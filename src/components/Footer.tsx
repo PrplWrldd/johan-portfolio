@@ -44,7 +44,7 @@ export const Footer: React.FC = () => {
               <Mail className="w-4 h-4" />
             </a>
             <a
-              href="https://www.linkedin.com/in/muhammad-johan-irfankhairudin-a234a6200"
+              href="https://www.linkedin.com/in/muhammad-johan-irfan-khairudin-a234a6200"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2.5 rounded-lg bg-slate-900/80 hover:bg-purple-950/40 text-slate-300 hover:text-purple-200 border border-purple-950/60 hover:border-purple-300/30 transition-colors"

@@ -109,13 +109,13 @@ export const Contact: React.FC = () => {
                   <LinkedinIcon className="w-4 h-4 text-purple-300" />
                 </div>
                 <a
-                  href="https://www.linkedin.com/in/muhammad-johan-irfankhairudin-a234a6200"
+                  href="https://www.linkedin.com/in/muhammad-johan-irfan-khairudin-a234a6200"
                   target="_blank"
                   rel="noopener noreferrer"
                   id="link-direct-linkedin"
                   className="text-xs sm:text-sm font-bold text-white hover:text-purple-300 transition-colors flex items-center gap-1.5"
                 >
-                  <span>in/muhammad-johan-irfankhairudin</span>
+                  <span>in/muhammad-johan-irfan-khairudin</span>
                   <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                 </a>
               </div>

@@ -126,7 +126,7 @@ export const Hero: React.FC = () => {
 
           {/* LinkedIn Profile */}
           <a
-            href="https://www.linkedin.com/in/muhammad-johan-irfankhairudin-a234a6200"
+            href="https://www.linkedin.com/in/muhammad-johan-irfan-khairudin-a234a6200"
             target="_blank"
             rel="noopener noreferrer"
             id="hero-cta-linkedin"

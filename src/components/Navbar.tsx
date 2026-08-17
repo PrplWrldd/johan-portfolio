@@ -111,7 +111,7 @@ export const Navbar: React.FC = () => {
 
             {/* LinkedIn Quick Link */}
             <a
-              href="https://www.linkedin.com/in/muhammad-johan-irfankhairudin-a234a6200"
+              href="https://www.linkedin.com/in/muhammad-johan-irfan-khairudin-a234a6200"
               target="_blank"
               rel="noopener noreferrer"
               id="nav-linkedin-link"
@@ -177,7 +177,7 @@ export const Navbar: React.FC = () => {
 
           <div className="pt-3 border-t border-purple-950/60 flex items-center justify-between">
             <a
-              href="https://www.linkedin.com/in/muhammad-johan-irfankhairudin-a234a6200"
+              href="https://www.linkedin.com/in/muhammad-johan-irfan-khairudin-a234a6200"
               target="_blank"
               rel="noopener noreferrer"
               id="mobile-nav-linkedin"
