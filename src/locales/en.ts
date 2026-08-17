@@ -12,6 +12,7 @@ export const en: TranslationDictionary = {
     resumeButton: 'Resume',
     themeToggleDark: 'Switch to Dark Mode',
     themeToggleLight: 'Switch to Light Mode',
+    themeToggleSystem: 'Sync with System Theme',
   },
   hero: {
     greeting: 'Hi, I am',

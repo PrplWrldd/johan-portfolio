@@ -14,6 +14,7 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     "verify-ui.js",
     "verify-theme-ui.js",
+    "verify-system-theme.js",
   ]),
 ]);
 

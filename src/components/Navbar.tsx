@@ -3,12 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
-import { Menu, X, Globe, Shield, ExternalLink, Sun, Moon } from 'lucide-react';
+import { Menu, X, Globe, Shield, ExternalLink, Sun, Moon, Laptop } from 'lucide-react';
 import { LinkedinIcon } from './Icons';
 
 export const Navbar: React.FC = () => {
   const { language, toggleLanguage, t } = useLanguage();
-  const { theme, toggleTheme, mounted } = useTheme();
+  const { mode, theme, toggleTheme, mounted } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -46,6 +46,19 @@ export const Navbar: React.FC = () => {
     { id: 'achievements', label: t.nav.achievements, href: '#achievements' },
     { id: 'contact', label: t.nav.contact, href: '#contact' },
   ];
+
+  const getThemeIcon = () => {
+    if (!mounted) return <Laptop className="w-4 h-4 text-purple-600 dark:text-purple-300" />;
+    if (mode === 'system') return <Laptop className="w-4 h-4 text-purple-600 dark:text-purple-300" />;
+    if (mode === 'light') return <Sun className="w-4 h-4 text-amber-500 hover:rotate-45 transition-transform duration-200" />;
+    return <Moon className="w-4 h-4 text-purple-400 hover:-rotate-12 transition-transform duration-200" />;
+  };
+
+  const getThemeTitle = () => {
+    if (mode === 'system') return `${t.nav.themeToggleSystem} (${theme.toUpperCase()})`;
+    if (mode === 'light') return t.nav.themeToggleLight;
+    return t.nav.themeToggleDark;
+  };
 
   return (
     <header
@@ -101,15 +114,14 @@ export const Navbar: React.FC = () => {
               type="button"
               id="theme-toggle-btn"
               onClick={toggleTheme}
-              className="inline-flex items-center justify-center p-2 rounded-md text-xs font-medium bg-[var(--bg-subtle-alpha)] border border-[var(--border-subtle)] hover:border-purple-400/40 text-[var(--text-secondary)] hover:text-[var(--text-heading)] transition-all cursor-pointer shadow-sm"
-              title={theme === 'dark' ? t.nav.themeToggleLight : t.nav.themeToggleDark}
-              aria-label={theme === 'dark' ? t.nav.themeToggleLight : t.nav.themeToggleDark}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium bg-[var(--bg-subtle-alpha)] border border-[var(--border-subtle)] hover:border-purple-400/40 text-[var(--text-secondary)] hover:text-[var(--text-heading)] transition-all cursor-pointer shadow-sm"
+              title={getThemeTitle()}
+              aria-label={getThemeTitle()}
             >
-              {mounted && theme === 'dark' ? (
-                <Sun className="w-4 h-4 text-amber-300 hover:rotate-45 transition-transform duration-200" />
-              ) : (
-                <Moon className="w-4 h-4 text-purple-600 hover:-rotate-12 transition-transform duration-200" />
-              )}
+              {getThemeIcon()}
+              <span className="font-mono text-[11px] uppercase font-semibold text-purple-700 dark:text-purple-300">
+                {mode === 'system' ? 'Auto' : mode}
+              </span>
             </button>
 
             {/* Language Toggle Button */}
@@ -148,14 +160,14 @@ export const Navbar: React.FC = () => {
               type="button"
               id="mobile-theme-toggle-btn"
               onClick={toggleTheme}
-              className="p-1.5 rounded bg-[var(--bg-subtle-alpha)] border border-[var(--border-subtle)] text-[var(--text-secondary)] cursor-pointer"
-              aria-label={theme === 'dark' ? t.nav.themeToggleLight : t.nav.themeToggleDark}
+              className="inline-flex items-center gap-1 px-2 py-1.5 rounded bg-[var(--bg-subtle-alpha)] border border-[var(--border-subtle)] text-xs font-medium text-[var(--text-secondary)] cursor-pointer"
+              aria-label={getThemeTitle()}
+              title={getThemeTitle()}
             >
-              {mounted && theme === 'dark' ? (
-                <Sun className="w-4 h-4 text-amber-300" />
-              ) : (
-                <Moon className="w-4 h-4 text-purple-600" />
-              )}
+              {getThemeIcon()}
+              <span className="font-mono text-[10px] uppercase font-semibold text-purple-700 dark:text-purple-300">
+                {mode === 'system' ? 'Auto' : mode}
+              </span>
             </button>
 
             {/* Mobile Lang Button */}
@@ -218,7 +230,7 @@ export const Navbar: React.FC = () => {
             >
               <LinkedinIcon className="w-3.5 h-3.5" />
               <span>Connect on LinkedIn</span>
-              <ExternalLink className="w-3.5 h-3.5" />
+              <ExternalLink className="w-3 h-3" />
             </a>
           </div>
         </div>

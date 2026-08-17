@@ -12,6 +12,7 @@ export const ms: TranslationDictionary = {
     resumeButton: 'Resume',
     themeToggleDark: 'Tukar ke Mod Gelap',
     themeToggleLight: 'Tukar ke Mod Cerah',
+    themeToggleSystem: 'Selaras dengan Tema Sistem',
   },
   hero: {
     greeting: 'Hai, saya',

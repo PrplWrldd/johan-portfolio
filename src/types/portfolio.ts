@@ -72,6 +72,7 @@ export interface TranslationDictionary {
     resumeButton: string;
     themeToggleDark: string;
     themeToggleLight: string;
+    themeToggleSystem: string;
   };
   hero: {
     greeting: string;

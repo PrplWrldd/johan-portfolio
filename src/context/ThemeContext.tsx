@@ -2,11 +2,13 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode, useSyncExternalStore } from 'react';
 
-export type Theme = 'light' | 'dark';
+export type ThemeMode = 'system' | 'light' | 'dark';
+export type ResolvedTheme = 'light' | 'dark';
 
 interface ThemeContextType {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
+  mode: ThemeMode;
+  theme: ResolvedTheme;
+  setThemeMode: (mode: ThemeMode) => void;
   toggleTheme: () => void;
   mounted: boolean;
 }
@@ -15,6 +17,22 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const emptySubscribe = () => () => {};
 
+const getSystemTheme = (): ResolvedTheme => {
+  if (typeof window !== 'undefined' && window.matchMedia) {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  return 'dark';
+};
+
+const applyThemeToDOM = (resolved: ResolvedTheme, mode: ThemeMode) => {
+  if (typeof document !== 'undefined') {
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(resolved);
+    document.documentElement.style.colorScheme = resolved;
+    document.documentElement.setAttribute('data-theme-mode', mode);
+  }
+};
+
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const mounted = useSyncExternalStore(
     emptySubscribe,
@@ -22,59 +40,81 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     () => false
   );
 
-  const [theme, setThemeState] = useState<Theme>(() => {
+  const [mode, setModeState] = useState<ThemeMode>(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('portfolio_theme') as Theme | null;
+      const saved = localStorage.getItem('portfolio_theme') as ThemeMode | null;
+      if (saved === 'system' || saved === 'light' || saved === 'dark') {
+        return saved;
+      }
+    }
+    return 'system';
+  });
+
+  const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('portfolio_theme') as ThemeMode | null;
       if (saved === 'light' || saved === 'dark') {
         return saved;
       }
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
-      }
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-        return 'light';
-      }
+      return getSystemTheme();
     }
     return 'dark';
   });
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    
     const handleMediaChange = (e: MediaQueryListEvent) => {
-      const hasSavedTheme = localStorage.getItem('portfolio_theme');
-      if (!hasSavedTheme) {
-        const newTheme: Theme = e.matches ? 'dark' : 'light';
-        setThemeState(newTheme);
-        document.documentElement.classList.remove('light', 'dark');
-        document.documentElement.classList.add(newTheme);
-        document.documentElement.style.colorScheme = newTheme;
+      const currentSaved = localStorage.getItem('portfolio_theme') as ThemeMode | null;
+      const isSystemMode = !currentSaved || currentSaved === 'system';
+      if (isSystemMode) {
+        const sysTheme: ResolvedTheme = e.matches ? 'dark' : 'light';
+        setResolvedTheme(sysTheme);
+        applyThemeToDOM(sysTheme, 'system');
       }
     };
+
+    // Ensure DOM matches initial state
+    const currentMode = (localStorage.getItem('portfolio_theme') as ThemeMode) || 'system';
+    const active = currentMode === 'system' ? getSystemTheme() : currentMode;
+    applyThemeToDOM(active, currentMode);
 
     mediaQuery.addEventListener('change', handleMediaChange);
     return () => mediaQuery.removeEventListener('change', handleMediaChange);
   }, []);
 
-  const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
+  const setThemeMode = (newMode: ThemeMode) => {
+    setModeState(newMode);
+    const resolved: ResolvedTheme = newMode === 'system' ? getSystemTheme() : newMode;
+    setResolvedTheme(resolved);
+
     if (typeof window !== 'undefined') {
-      localStorage.setItem('portfolio_theme', newTheme);
-      document.documentElement.classList.remove('light', 'dark');
-      document.documentElement.classList.add(newTheme);
-      document.documentElement.style.colorScheme = newTheme;
+      if (newMode === 'system') {
+        localStorage.setItem('portfolio_theme', 'system');
+      } else {
+        localStorage.setItem('portfolio_theme', newMode);
+      }
+      applyThemeToDOM(resolved, newMode);
     }
   };
 
   const toggleTheme = () => {
-    const nextTheme: Theme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(nextTheme);
+    // Cycles: system -> light -> dark -> system
+    if (mode === 'system') {
+      setThemeMode('light');
+    } else if (mode === 'light') {
+      setThemeMode('dark');
+    } else {
+      setThemeMode('system');
+    }
   };
 
   return (
     <ThemeContext.Provider
       value={{
-        theme,
-        setTheme,
+        mode,
+        theme: resolvedTheme,
+        setThemeMode,
         toggleTheme,
         mounted
       }}

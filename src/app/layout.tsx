@@ -47,9 +47,12 @@ export default function RootLayout({
               (function() {
                 try {
                   var saved = localStorage.getItem('portfolio_theme');
-                  var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-                  document.documentElement.classList.add(theme);
-                  document.documentElement.style.colorScheme = theme;
+                  var isDark = saved === 'dark' || ((!saved || saved === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                  var activeTheme = isDark ? 'dark' : 'light';
+                  document.documentElement.classList.remove('light', 'dark');
+                  document.documentElement.classList.add(activeTheme);
+                  document.documentElement.style.colorScheme = activeTheme;
+                  document.documentElement.setAttribute('data-theme-mode', saved || 'system');
                 } catch (e) {}
               })();
             `,
