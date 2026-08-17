@@ -15,6 +15,7 @@ const eslintConfig = defineConfig([
     "verify-ui.js",
     "verify-theme-ui.js",
     "verify-system-theme.js",
+    "verify-contact-ui.js",
   ]),
 ]);
 
