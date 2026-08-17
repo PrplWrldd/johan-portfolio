@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { Award, Mail, Check, ExternalLink, ArrowDown, ChevronRight, FileCheck2, GraduationCap } from 'lucide-react';
+import { Award, Mail, Check, ExternalLink, ArrowDown, ChevronRight, FileCheck2, GraduationCap, Target } from 'lucide-react';
+import { ArcheryBowIcon, ArcheryTargetIcon } from './Icons';
 
 export const Hero: React.FC = () => {
   const { t } = useLanguage();
@@ -20,7 +21,7 @@ export const Hero: React.FC = () => {
       aria-label="Hero Introduction"
       className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 bg-mesh-subtle overflow-hidden"
     >
-      {/* Decorative ambient subtle background glows */}
+      {/* Decorative subtle ambient glows */}
       <div
         className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-purple-300/10 rounded-full blur-3xl pointer-events-none -z-10"
         aria-hidden="true"
@@ -29,6 +30,23 @@ export const Hero: React.FC = () => {
         className="absolute bottom-10 right-10 w-[300px] h-[250px] bg-violet-300/10 rounded-full blur-3xl pointer-events-none -z-10"
         aria-hidden="true"
       />
+
+      {/* Subtle Archery Concentric Watermark (Ultra-fine geometric motif) */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] pointer-events-none opacity-[0.035] -z-10 select-none"
+        aria-hidden="true"
+      >
+        <svg viewBox="0 0 400 400" className="w-full h-full text-purple-300 stroke-current fill-none">
+          <circle cx="200" cy="200" r="190" strokeWidth="0.75" strokeDasharray="4 4" />
+          <circle cx="200" cy="200" r="140" strokeWidth="0.75" />
+          <circle cx="200" cy="200" r="90" strokeWidth="0.75" strokeDasharray="3 3" />
+          <circle cx="200" cy="200" r="40" strokeWidth="0.75" />
+          <circle cx="200" cy="200" r="8" strokeWidth="0.75" />
+          {/* Subtle crosshair guide axes */}
+          <line x1="200" y1="5" x2="200" y2="395" strokeWidth="0.5" strokeDasharray="2 4" />
+          <line x1="5" y1="200" x2="395" y2="200" strokeWidth="0.5" strokeDasharray="2 4" />
+        </svg>
+      </div>
 
       <div className="max-w-4xl mx-auto w-full text-center flex flex-col items-center">
         {/* Verification Status Badges */}
@@ -54,11 +72,20 @@ export const Hero: React.FC = () => {
             <Award className="w-3.5 h-3.5 text-violet-300" />
             {t.hero.badgeCgpa}
           </span>
+          {/* Subtle Archery Leadership Badge */}
+          <span
+            id="hero-badge-archery"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-900/80 text-amber-200 border border-amber-500/30 shadow-sm"
+          >
+            <ArcheryBowIcon className="w-3.5 h-3.5 text-amber-300" />
+            <span>Archery Captain</span>
+          </span>
         </div>
 
         {/* Greeting and Full Name */}
-        <p className="text-xs uppercase tracking-widest text-purple-300 font-mono mb-2 font-medium">
-          {t.hero.greeting}
+        <p className="text-xs uppercase tracking-widest text-purple-300 font-mono mb-2 font-medium flex items-center justify-center gap-1.5">
+          <ArcheryTargetIcon className="w-3 h-3 text-purple-300/70 inline" />
+          <span>{t.hero.greeting}</span>
         </p>
         <h1
           id="hero-candidate-name"
@@ -156,7 +183,10 @@ export const Hero: React.FC = () => {
             <div className="text-xs text-purple-200">Requirements & Dev</div>
           </div>
           <div className="p-3.5 rounded-lg bg-slate-900/80 border border-purple-950/70 hover:border-purple-300/40 transition-colors">
-            <div className="text-[11px] text-slate-400 uppercase font-mono tracking-wider">Leadership</div>
+            <div className="text-[11px] text-slate-400 uppercase font-mono tracking-wider flex items-center justify-between">
+              <span>Leadership</span>
+              <ArcheryBowIcon className="w-3 h-3 text-amber-300/80" />
+            </div>
             <div className="text-sm font-bold text-white mt-0.5">Archery Captain</div>
             <div className="text-xs text-amber-300">IIUM Mustang</div>
           </div>

@@ -5,11 +5,11 @@ import { useLanguage } from '../context/LanguageContext';
 import { 
   Trophy, 
   Award, 
-  Target, 
   Medal, 
   CheckCircle, 
   Calendar 
 } from 'lucide-react';
+import { ArcheryBowIcon, ArcheryTargetIcon } from './Icons';
 
 export const Achievements: React.FC = () => {
   const { t } = useLanguage();
@@ -17,13 +17,13 @@ export const Achievements: React.FC = () => {
   const achievementIcons: Record<string, React.ReactNode> = {
     'deans-list': <Award className="w-7 h-7 text-purple-300" />,
     'uia-symposium': <Trophy className="w-7 h-7 text-violet-300" />,
-    'archery-captain': <Target className="w-7 h-7 text-purple-200" />,
+    'archery-captain': <ArcheryBowIcon className="w-7 h-7 text-amber-300" />,
   };
 
   const badgeColors: Record<string, string> = {
     'deans-list': 'bg-purple-950/70 text-purple-200 border border-purple-300/30',
     'uia-symposium': 'bg-violet-950/70 text-violet-200 border border-violet-300/30',
-    'archery-captain': 'bg-purple-950/70 text-purple-200 border border-purple-300/30',
+    'archery-captain': 'bg-amber-950/60 text-amber-200 border border-amber-400/30',
   };
 
   return (
@@ -58,7 +58,11 @@ export const Achievements: React.FC = () => {
               <div>
                 {/* Header with Icon and Badge */}
                 <div className="flex items-start justify-between gap-3 mb-5">
-                  <div className="p-3.5 rounded-xl bg-purple-300/10 border border-purple-300/20">
+                  <div className={`p-3.5 rounded-xl ${
+                    item.id === 'archery-captain' 
+                      ? 'bg-amber-400/10 border border-amber-400/20' 
+                      : 'bg-purple-300/10 border border-purple-300/20'
+                  }`}>
                     {achievementIcons[item.id] || <Medal className="w-7 h-7 text-purple-300" />}
                   </div>
                   <span
@@ -71,8 +75,11 @@ export const Achievements: React.FC = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5">
-                  {item.title}
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5 flex items-center gap-2">
+                  <span>{item.title}</span>
+                  {item.id === 'archery-captain' && (
+                    <ArcheryTargetIcon className="w-4 h-4 text-amber-300/70 inline shrink-0" />
+                  )}
                 </h3>
 
                 {/* Organization & Period */}
