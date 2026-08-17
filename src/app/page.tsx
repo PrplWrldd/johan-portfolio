@@ -13,7 +13,7 @@ import { Footer } from '../components/Footer';
 
 export default function HomePage() {
   return (
-    <div className="relative min-h-screen bg-[#07060c] text-slate-100 selection:bg-purple-300/30 selection:text-purple-100">
+    <div className="relative min-h-screen bg-[var(--bg-main)] text-[var(--text-primary)] transition-colors duration-300">
       {/* Sticky Top Header Navigation */}
       <Navbar />
 

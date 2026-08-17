@@ -10,6 +10,8 @@ export const en: TranslationDictionary = {
     achievements: 'Honors',
     contact: 'Contact',
     resumeButton: 'Resume',
+    themeToggleDark: 'Switch to Dark Mode',
+    themeToggleLight: 'Switch to Light Mode',
   },
   hero: {
     greeting: 'Hi, I am',

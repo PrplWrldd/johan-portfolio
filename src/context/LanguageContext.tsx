@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Language, TranslationDictionary } from '../types/portfolio';
 import { en } from '../locales/en';
 import { ms } from '../locales/ms';
@@ -20,16 +20,15 @@ const translations: Record<Language, TranslationDictionary> = {
 };
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>('en');
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const saved = localStorage.getItem('portfolio_lang') as Language;
-    if (saved === 'en' || saved === 'ms') {
-      setLanguageState(saved);
+  const [language, setLanguageState] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('portfolio_lang') as Language;
+      if (saved === 'en' || saved === 'ms') {
+        return saved;
+      }
     }
-  }, []);
+    return 'en';
+  });
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);

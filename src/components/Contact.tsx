@@ -44,19 +44,19 @@ export const Contact: React.FC = () => {
     <section
       id="contact"
       aria-label="Contact and Communication"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-black/40 relative"
+      className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border-subtle)] bg-[var(--bg-main)] relative transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="badge-tag bg-purple-950/70 text-purple-200 border border-purple-300/30 mb-3 shadow-sm shadow-purple-950/40">
-            <Mail className="w-3.5 h-3.5 text-purple-300" />
+          <span className="badge-tag bg-purple-100 dark:bg-purple-950/70 text-purple-800 dark:text-purple-200 border border-purple-300/40 dark:border-purple-300/30 mb-3 shadow-sm">
+            <Mail className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300" />
             {t.contact.sectionTag}
           </span>
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[var(--text-heading)] mb-4">
             {t.contact.title}
           </h2>
-          <p className="text-sm sm:text-base text-slate-400">
+          <p className="text-sm sm:text-base text-[var(--text-muted)]">
             {t.contact.subtitle}
           </p>
         </div>
@@ -66,24 +66,24 @@ export const Contact: React.FC = () => {
           {/* Left Column: Direct Channels (5 cols) */}
           <div className="lg:col-span-5 space-y-5">
             <div className="card-govtech p-6 rounded-xl">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-purple-300 font-mono mb-4">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-purple-700 dark:text-purple-300 font-mono mb-4">
                 {t.contact.directReachout}
               </h3>
 
               {/* Email Card */}
-              <div className="p-4 rounded-lg bg-slate-900/80 border border-purple-950/60 mb-4">
+              <div className="p-4 rounded-lg bg-purple-50/70 dark:bg-slate-900/80 border border-purple-200 dark:border-purple-950/60 mb-4">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-mono text-slate-400">{t.contact.emailLabel}</span>
+                  <span className="text-xs font-mono text-[var(--text-muted)]">{t.contact.emailLabel}</span>
                   <button
                     type="button"
                     onClick={handleCopy}
                     id="btn-copy-contact-email"
-                    className="text-xs text-purple-300 hover:text-purple-200 flex items-center gap-1 cursor-pointer"
+                    className="text-xs text-purple-700 dark:text-purple-300 hover:text-purple-900 dark:hover:text-purple-200 flex items-center gap-1 cursor-pointer"
                   >
                     {copiedEmail ? (
                       <>
-                        <Check className="w-3 h-3 text-purple-300" />
-                        <span className="text-purple-200 font-semibold">Copied!</span>
+                        <Check className="w-3 h-3 text-purple-600 dark:text-purple-300" />
+                        <span className="text-purple-700 dark:text-purple-200 font-semibold">Copied!</span>
                       </>
                     ) : (
                       <>
@@ -96,24 +96,24 @@ export const Contact: React.FC = () => {
                 <a
                   href="mailto:johanirfan123@gmail.com"
                   id="link-direct-email"
-                  className="text-sm font-bold text-white hover:text-purple-300 transition-colors break-all"
+                  className="text-sm font-bold text-[var(--text-heading)] hover:text-purple-600 dark:hover:text-purple-300 transition-colors break-all"
                 >
                   johanirfan123@gmail.com
                 </a>
               </div>
 
               {/* LinkedIn Card */}
-              <div className="p-4 rounded-lg bg-slate-900/80 border border-purple-950/60">
+              <div className="p-4 rounded-lg bg-purple-50/70 dark:bg-slate-900/80 border border-purple-200 dark:border-purple-950/60">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-mono text-slate-400">{t.contact.linkedinLabel}</span>
-                  <LinkedinIcon className="w-4 h-4 text-purple-300" />
+                  <span className="text-xs font-mono text-[var(--text-muted)]">{t.contact.linkedinLabel}</span>
+                  <LinkedinIcon className="w-4 h-4 text-purple-600 dark:text-purple-300" />
                 </div>
                 <a
                   href="https://www.linkedin.com/in/muhammad-johan-irfan-khairudin-a234a6200"
                   target="_blank"
                   rel="noopener noreferrer"
                   id="link-direct-linkedin"
-                  className="text-xs sm:text-sm font-bold text-white hover:text-purple-300 transition-colors flex items-center gap-1.5"
+                  className="text-xs sm:text-sm font-bold text-[var(--text-heading)] hover:text-purple-600 dark:hover:text-purple-300 transition-colors flex items-center gap-1.5"
                 >
                   <span>in/muhammad-johan-irfan-khairudin</span>
                   <ExternalLink className="w-3.5 h-3.5 shrink-0" />
@@ -122,8 +122,8 @@ export const Contact: React.FC = () => {
             </div>
 
             {/* Quick Note Card */}
-            <div className="p-5 rounded-xl bg-purple-950/20 border border-purple-300/25 text-xs text-slate-300 space-y-2">
-              <div className="flex items-center gap-1.5 text-purple-300 font-semibold">
+            <div className="p-5 rounded-xl bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-300/25 text-xs text-[var(--text-secondary)] space-y-2">
+              <div className="flex items-center gap-1.5 text-purple-700 dark:text-purple-300 font-semibold">
                 <ShieldCheck className="w-4 h-4" />
                 <span>Open for Technical Roles</span>
               </div>
@@ -140,14 +140,14 @@ export const Contact: React.FC = () => {
               id="portfolio-contact-form"
               className="card-govtech p-6 sm:p-8 rounded-xl space-y-4"
             >
-              <h3 className="text-base font-bold text-white mb-2 flex items-center gap-2">
-                <MessageSquare className="w-4 h-4 text-purple-300" />
+              <h3 className="text-base font-bold text-[var(--text-heading)] mb-2 flex items-center gap-2">
+                <MessageSquare className="w-4 h-4 text-purple-600 dark:text-purple-300" />
                 {t.contact.formTitle}
               </h3>
 
               <div>
-                <label htmlFor="contact-name" className="block text-xs font-medium text-slate-300 mb-1">
-                  Name / Organization <span className="text-purple-300">*</span>
+                <label htmlFor="contact-name" className="block text-xs font-medium text-[var(--text-secondary)] mb-1">
+                  Name / Organization <span className="text-purple-600 dark:text-purple-300">*</span>
                 </label>
                 <input
                   type="text"
@@ -156,13 +156,13 @@ export const Contact: React.FC = () => {
                   placeholder={t.contact.namePlaceholder}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-slate-900/80 border border-purple-950/60 text-sm text-white placeholder-slate-500 focus:border-purple-300 transition-colors"
+                  className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-900/80 border border-purple-200 dark:border-purple-950/60 text-sm text-[var(--text-heading)] placeholder:text-[var(--text-subtle)] focus:border-purple-500 dark:focus:border-purple-300 transition-colors shadow-xs"
                 />
               </div>
 
               <div>
-                <label htmlFor="contact-email" className="block text-xs font-medium text-slate-300 mb-1">
-                  Email Address <span className="text-purple-300">*</span>
+                <label htmlFor="contact-email" className="block text-xs font-medium text-[var(--text-secondary)] mb-1">
+                  Email Address <span className="text-purple-600 dark:text-purple-300">*</span>
                 </label>
                 <input
                   type="email"
@@ -171,12 +171,12 @@ export const Contact: React.FC = () => {
                   placeholder={t.contact.emailPlaceholder}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-slate-900/80 border border-purple-950/60 text-sm text-white placeholder-slate-500 focus:border-purple-300 transition-colors"
+                  className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-900/80 border border-purple-200 dark:border-purple-950/60 text-sm text-[var(--text-heading)] placeholder:text-[var(--text-subtle)] focus:border-purple-500 dark:focus:border-purple-300 transition-colors shadow-xs"
                 />
               </div>
 
               <div>
-                <label htmlFor="contact-subject" className="block text-xs font-medium text-slate-300 mb-1">
+                <label htmlFor="contact-subject" className="block text-xs font-medium text-[var(--text-secondary)] mb-1">
                   Subject
                 </label>
                 <input
@@ -185,13 +185,13 @@ export const Contact: React.FC = () => {
                   placeholder={t.contact.subjectPlaceholder}
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-slate-900/80 border border-purple-950/60 text-sm text-white placeholder-slate-500 focus:border-purple-300 transition-colors"
+                  className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-900/80 border border-purple-200 dark:border-purple-950/60 text-sm text-[var(--text-heading)] placeholder:text-[var(--text-subtle)] focus:border-purple-500 dark:focus:border-purple-300 transition-colors shadow-xs"
                 />
               </div>
 
               <div>
-                <label htmlFor="contact-message" className="block text-xs font-medium text-slate-300 mb-1">
-                  Message <span className="text-purple-300">*</span>
+                <label htmlFor="contact-message" className="block text-xs font-medium text-[var(--text-secondary)] mb-1">
+                  Message <span className="text-purple-600 dark:text-purple-300">*</span>
                 </label>
                 <textarea
                   id="contact-message"
@@ -200,21 +200,21 @@ export const Contact: React.FC = () => {
                   placeholder={t.contact.messagePlaceholder}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-slate-900/80 border border-purple-950/60 text-sm text-white placeholder-slate-500 focus:border-purple-300 transition-colors resize-none"
+                  className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-900/80 border border-purple-200 dark:border-purple-950/60 text-sm text-[var(--text-heading)] placeholder:text-[var(--text-subtle)] focus:border-purple-500 dark:focus:border-purple-300 transition-colors resize-none shadow-xs"
                 />
               </div>
 
               <button
                 type="submit"
                 id="btn-submit-contact"
-                className="w-full py-3 px-4 rounded-lg bg-purple-300 hover:bg-purple-200 text-purple-950 font-bold text-sm shadow-md shadow-purple-950/40 flex items-center justify-center gap-2 cursor-pointer transition-all hover:scale-[1.01] active:scale-[0.99]"
+                className="w-full py-3 px-4 rounded-lg bg-purple-600 hover:bg-purple-700 text-white dark:bg-purple-300 dark:hover:bg-purple-200 dark:text-purple-950 font-bold text-sm shadow-md shadow-purple-950/20 dark:shadow-purple-950/40 flex items-center justify-center gap-2 cursor-pointer transition-all hover:scale-[1.01] active:scale-[0.99]"
               >
                 <Send className="w-4 h-4" />
                 <span>{t.contact.sendButton}</span>
               </button>
 
               {submitted && (
-                <div className="p-3 rounded-lg bg-purple-950/60 border border-purple-300/40 text-xs text-purple-200 text-center animate-fade-in">
+                <div className="p-3 rounded-lg bg-purple-100 dark:bg-purple-950/60 border border-purple-300/60 dark:border-purple-300/40 text-xs text-purple-900 dark:text-purple-200 text-center animate-fade-in font-medium">
                   {t.contact.successMessage}
                 </div>
               )}

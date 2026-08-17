@@ -70,6 +70,8 @@ export interface TranslationDictionary {
     achievements: string;
     contact: string;
     resumeButton: string;
+    themeToggleDark: string;
+    themeToggleLight: string;
   };
   hero: {
     greeting: string;

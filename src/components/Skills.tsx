@@ -17,11 +17,11 @@ export const Skills: React.FC = () => {
   const { t } = useLanguage();
 
   const categoryIcons = {
-    languages: <Code2 className="w-5 h-5 text-purple-300" />,
-    frameworks: <Layers className="w-5 h-5 text-violet-300" />,
-    dataTools: <Database className="w-5 h-5 text-purple-200" />,
-    documentation: <FileText className="w-5 h-5 text-violet-200" />,
-    multimedia: <Palette className="w-5 h-5 text-pink-300" />,
+    languages: <Code2 className="w-5 h-5 text-purple-600 dark:text-purple-300" />,
+    frameworks: <Layers className="w-5 h-5 text-violet-600 dark:text-violet-300" />,
+    dataTools: <Database className="w-5 h-5 text-purple-600 dark:text-purple-200" />,
+    documentation: <FileText className="w-5 h-5 text-violet-600 dark:text-violet-200" />,
+    multimedia: <Palette className="w-5 h-5 text-pink-600 dark:text-pink-300" />,
   };
 
   const categories = [
@@ -36,19 +36,19 @@ export const Skills: React.FC = () => {
     <section
       id="skills"
       aria-label="Technical Skills and Capabilities"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-black/40 relative"
+      className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border-subtle)] bg-[var(--bg-main)] relative transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="badge-tag bg-purple-950/70 text-purple-200 border border-purple-300/30 mb-3 shadow-sm shadow-purple-950/40">
-            <Wrench className="w-3.5 h-3.5 text-purple-300" />
+          <span className="badge-tag bg-purple-100 dark:bg-purple-950/70 text-purple-800 dark:text-purple-200 border border-purple-300/40 dark:border-purple-300/30 mb-3 shadow-sm">
+            <Wrench className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300" />
             {t.skills.sectionTag}
           </span>
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[var(--text-heading)] mb-4">
             {t.skills.title}
           </h2>
-          <p className="text-sm sm:text-base text-slate-400">
+          <p className="text-sm sm:text-base text-[var(--text-muted)]">
             {t.skills.subtitle}
           </p>
         </div>
@@ -66,14 +66,14 @@ export const Skills: React.FC = () => {
               <div>
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="p-2.5 rounded-lg bg-purple-300/10 border border-purple-300/20">
+                  <div className="p-2.5 rounded-lg bg-purple-500/10 dark:bg-purple-300/10 border border-purple-500/20 dark:border-purple-300/20">
                     {cat.icon}
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-white">
+                    <h3 className="text-base font-bold text-[var(--text-heading)]">
                       {cat.data.title}
                     </h3>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-[var(--text-muted)]">
                       {cat.data.description}
                     </p>
                   </div>
@@ -86,14 +86,14 @@ export const Skills: React.FC = () => {
                       key={sIdx}
                       className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                         skill.highlight
-                          ? 'bg-purple-950/60 text-purple-100 border border-purple-300/40 shadow-sm shadow-purple-950/40'
-                          : 'bg-slate-900/70 text-slate-300 border border-purple-950/60 hover:border-purple-300/30'
+                          ? 'bg-purple-100 dark:bg-purple-950/60 text-purple-900 dark:text-purple-100 border border-purple-300/50 dark:border-purple-300/40 shadow-sm font-semibold'
+                          : 'bg-white dark:bg-slate-900/70 text-slate-700 dark:text-slate-300 border border-purple-200 dark:border-purple-950/60 hover:border-purple-400 dark:hover:border-purple-300/30'
                       }`}
                     >
-                      {skill.highlight && <Star className="w-3 h-3 text-purple-300 fill-purple-300/20" />}
-                      <span className="font-semibold text-white">{skill.name}</span>
+                      {skill.highlight && <Star className="w-3 h-3 text-purple-600 dark:text-purple-300 fill-purple-600/20 dark:fill-purple-300/20" />}
+                      <span className="font-semibold text-[var(--text-heading)]">{skill.name}</span>
                       {skill.level && (
-                        <span className="text-[10px] text-slate-400 font-mono pl-1 border-l border-slate-700">
+                        <span className="text-[10px] text-[var(--text-muted)] font-mono pl-1 border-l border-slate-300 dark:border-slate-700">
                           {skill.level}
                         </span>
                       )}
@@ -103,9 +103,9 @@ export const Skills: React.FC = () => {
               </div>
 
               {/* Bottom tag indicating relevance */}
-              <div className="mt-5 pt-3 border-t border-purple-950/60 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+              <div className="mt-5 pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between text-[11px] text-[var(--text-muted)] font-mono">
                 <span>{cat.data.skills.length} competencies</span>
-                <span className="text-purple-300 flex items-center gap-1">
+                <span className="text-purple-700 dark:text-purple-300 flex items-center gap-1 font-medium">
                   <Check className="w-3 h-3" /> Industry standard
                 </span>
               </div>

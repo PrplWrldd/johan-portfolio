@@ -10,6 +10,8 @@ export const ms: TranslationDictionary = {
     achievements: 'Pencapaian',
     contact: 'Hubungi',
     resumeButton: 'Resume',
+    themeToggleDark: 'Tukar ke Mod Gelap',
+    themeToggleLight: 'Tukar ke Mod Cerah',
   },
   hero: {
     greeting: 'Hai, saya',

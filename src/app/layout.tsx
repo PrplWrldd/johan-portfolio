@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { LanguageProvider } from '../context/LanguageContext';
+import { ThemeProvider } from '../context/ThemeContext';
 
 export const metadata: Metadata = {
   title: 'Muhammad Johan Irfan | Requirements Engineer & Full-Stack Developer',
@@ -38,11 +39,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="antialiased selection:bg-purple-300/30 selection:text-purple-100">
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('portfolio_theme');
+                  var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                  document.documentElement.classList.add(theme);
+                  document.documentElement.style.colorScheme = theme;
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className="antialiased selection:bg-purple-400/30 selection:text-purple-900 dark:selection:text-purple-100 min-h-screen">
+        <ThemeProvider>
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

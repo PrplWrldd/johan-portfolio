@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "verify-ui.js",
+    "verify-theme-ui.js",
   ]),
 ]);
 
