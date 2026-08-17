@@ -49,7 +49,7 @@ export const Navbar: React.FC = () => {
     <header
       id="main-header"
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled ? 'glass-nav py-3 shadow-lg shadow-black/20' : 'bg-transparent py-5'
+        isScrolled ? 'glass-nav py-3 shadow-lg shadow-black/40' : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,15 +60,15 @@ export const Navbar: React.FC = () => {
             id="brand-logo-link"
             className="flex items-center gap-2.5 group focus:outline-none"
           >
-            <div className="w-9 h-9 rounded-lg bg-sky-600/20 border border-sky-500/30 flex items-center justify-center text-sky-400 font-bold text-sm tracking-wider group-hover:bg-sky-600/30 transition-colors">
+            <div className="w-9 h-9 rounded-lg bg-purple-300/15 border border-purple-300/30 flex items-center justify-center text-purple-200 font-bold text-sm tracking-wider group-hover:bg-purple-300/25 transition-colors shadow-sm shadow-purple-950/40">
               JI
             </div>
             <div className="flex flex-col">
-              <span className="text-sm font-semibold tracking-tight text-white group-hover:text-sky-400 transition-colors">
+              <span className="text-sm font-semibold tracking-tight text-white group-hover:text-purple-300 transition-colors">
                 Johan Irfan
               </span>
               <span className="text-[11px] text-slate-400 font-mono flex items-center gap-1">
-                <Shield className="w-3 h-3 text-emerald-400 inline" />
+                <Shield className="w-3 h-3 text-purple-300 inline" />
                 GovTech Intern · IIUM
               </span>
             </div>
@@ -83,8 +83,8 @@ export const Navbar: React.FC = () => {
                 id={`nav-link-${link.id}`}
                 className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150 ${
                   activeSection === link.id
-                    ? 'text-white bg-slate-800/80 border border-slate-700 shadow-sm'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-800/40'
+                    ? 'text-purple-100 bg-purple-950/60 border border-purple-300/30 shadow-sm shadow-purple-950/40'
+                    : 'text-slate-300 hover:text-purple-200 hover:bg-purple-950/20'
                 }`}
               >
                 {link.label}
@@ -99,14 +99,14 @@ export const Navbar: React.FC = () => {
               type="button"
               id="lang-toggle-btn"
               onClick={toggleLanguage}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium bg-slate-800/80 border border-slate-700 hover:border-sky-500/50 text-slate-200 hover:text-white transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium bg-slate-900/80 border border-purple-950/70 hover:border-purple-300/40 text-slate-200 hover:text-white transition-all cursor-pointer"
               title={language === 'en' ? 'Tukar ke Bahasa Melayu' : 'Switch to English'}
               aria-label="Toggle language between English and Bahasa Melayu"
             >
-              <Globe className="w-3.5 h-3.5 text-sky-400" />
-              <span className={language === 'en' ? 'font-bold text-sky-400' : 'text-slate-400'}>EN</span>
+              <Globe className="w-3.5 h-3.5 text-purple-300" />
+              <span className={language === 'en' ? 'font-bold text-purple-300' : 'text-slate-400'}>EN</span>
               <span className="text-slate-600">/</span>
-              <span className={language === 'ms' ? 'font-bold text-sky-400' : 'text-slate-400'}>BM</span>
+              <span className={language === 'ms' ? 'font-bold text-purple-300' : 'text-slate-400'}>BM</span>
             </button>
 
             {/* LinkedIn Quick Link */}
@@ -115,7 +115,7 @@ export const Navbar: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               id="nav-linkedin-link"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium bg-sky-600 hover:bg-sky-500 text-white shadow-sm transition-all"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold bg-purple-300 hover:bg-purple-200 text-purple-950 shadow-md shadow-purple-950/40 transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
               <LinkedinIcon className="w-3.5 h-3.5" />
               <span>LinkedIn</span>
@@ -130,18 +130,18 @@ export const Navbar: React.FC = () => {
               type="button"
               id="mobile-lang-toggle-btn"
               onClick={toggleLanguage}
-              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded bg-slate-800 border border-slate-700 text-xs font-medium text-slate-200 cursor-pointer"
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded bg-slate-900 border border-purple-950/70 text-xs font-medium text-slate-200 cursor-pointer"
               aria-label="Toggle language"
             >
-              <Globe className="w-3.5 h-3.5 text-sky-400" />
-              <span className="font-bold text-sky-400">{language.toUpperCase()}</span>
+              <Globe className="w-3.5 h-3.5 text-purple-300" />
+              <span className="font-bold text-purple-300">{language.toUpperCase()}</span>
             </button>
 
             <button
               type="button"
               id="mobile-menu-trigger"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none cursor-pointer"
+              className="p-2 rounded-md text-slate-300 hover:text-white hover:bg-purple-950/30 focus:outline-none cursor-pointer"
               aria-expanded={mobileMenuOpen}
               aria-label="Open mobile navigation menu"
             >
@@ -155,7 +155,7 @@ export const Navbar: React.FC = () => {
       {mobileMenuOpen && (
         <div
           id="mobile-nav-drawer"
-          className="lg:hidden glass-nav border-t border-slate-800/80 px-4 pt-3 pb-6 space-y-2 animate-fade-in shadow-2xl"
+          className="lg:hidden glass-nav border-t border-purple-950/60 px-4 pt-3 pb-6 space-y-2 animate-fade-in shadow-2xl"
         >
           <nav className="flex flex-col space-y-1">
             {navLinks.map((link) => (
@@ -166,8 +166,8 @@ export const Navbar: React.FC = () => {
                 onClick={() => setMobileMenuOpen(false)}
                 className={`px-3 py-2.5 rounded-md text-sm font-medium transition-colors ${
                   activeSection === link.id
-                    ? 'text-white bg-slate-800 font-semibold border-l-2 border-sky-400'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
+                    ? 'text-purple-100 bg-purple-950/60 font-semibold border-l-2 border-purple-300'
+                    : 'text-slate-300 hover:text-white hover:bg-purple-950/30'
                 }`}
               >
                 {link.label}
@@ -175,13 +175,13 @@ export const Navbar: React.FC = () => {
             ))}
           </nav>
 
-          <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
+          <div className="pt-3 border-t border-purple-950/60 flex items-center justify-between">
             <a
               href="https://www.linkedin.com/in/muhammad-johan-irfankhairudin-a234a6200"
               target="_blank"
               rel="noopener noreferrer"
               id="mobile-nav-linkedin"
-              className="w-full text-center py-2 px-3 rounded-md text-xs font-medium bg-sky-600 text-white flex items-center justify-center gap-1.5"
+              className="w-full text-center py-2 px-3 rounded-md text-xs font-semibold bg-purple-300 hover:bg-purple-200 text-purple-950 flex items-center justify-center gap-1.5 shadow-md shadow-purple-950/40"
             >
               <LinkedinIcon className="w-3.5 h-3.5" />
               <span>Connect on LinkedIn</span>

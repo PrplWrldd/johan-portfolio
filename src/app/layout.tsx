@@ -39,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="antialiased selection:bg-sky-500/30 selection:text-sky-200">
+      <body className="antialiased selection:bg-purple-300/30 selection:text-purple-100">
         <LanguageProvider>
           {children}
         </LanguageProvider>

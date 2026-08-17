@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { Shield, Award, Mail, Check, ExternalLink, ArrowDown, ChevronRight, FileCheck2, GraduationCap } from 'lucide-react';
+import { Award, Mail, Check, ExternalLink, ArrowDown, ChevronRight, FileCheck2, GraduationCap } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const { t } = useLanguage();
@@ -22,11 +22,11 @@ export const Hero: React.FC = () => {
     >
       {/* Decorative ambient subtle background glows */}
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-sky-600/10 rounded-full blur-3xl pointer-events-none -z-10"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-purple-300/10 rounded-full blur-3xl pointer-events-none -z-10"
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-10 right-10 w-[300px] h-[250px] bg-emerald-600/10 rounded-full blur-3xl pointer-events-none -z-10"
+        className="absolute bottom-10 right-10 w-[300px] h-[250px] bg-violet-300/10 rounded-full blur-3xl pointer-events-none -z-10"
         aria-hidden="true"
       />
 
@@ -35,29 +35,29 @@ export const Hero: React.FC = () => {
         <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
           <span
             id="hero-badge-govtech"
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-sky-950/70 text-sky-300 border border-sky-800/60 shadow-sm"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-purple-950/70 text-purple-200 border border-purple-300/30 shadow-sm shadow-purple-950/40"
           >
-            <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-purple-300 animate-pulse" />
             {t.hero.badgeGovTech}
           </span>
           <span
             id="hero-badge-iium"
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-800/80 text-slate-300 border border-slate-700 shadow-sm"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-900/80 text-slate-300 border border-slate-700/80 shadow-sm"
           >
-            <GraduationCap className="w-3.5 h-3.5 text-emerald-400" />
+            <GraduationCap className="w-3.5 h-3.5 text-purple-300" />
             {t.hero.badgeEducation}
           </span>
           <span
             id="hero-badge-cgpa"
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-950/60 text-emerald-300 border border-emerald-800/60 shadow-sm"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-violet-950/60 text-violet-200 border border-violet-300/30 shadow-sm shadow-purple-950/40"
           >
-            <Award className="w-3.5 h-3.5 text-emerald-400" />
+            <Award className="w-3.5 h-3.5 text-violet-300" />
             {t.hero.badgeCgpa}
           </span>
         </div>
 
         {/* Greeting and Full Name */}
-        <p className="text-xs uppercase tracking-widest text-sky-400 font-mono mb-2 font-medium">
+        <p className="text-xs uppercase tracking-widest text-purple-300 font-mono mb-2 font-medium">
           {t.hero.greeting}
         </p>
         <h1
@@ -88,7 +88,7 @@ export const Hero: React.FC = () => {
           <a
             href="#experience"
             id="hero-cta-experience"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-sky-600 hover:bg-sky-500 text-white shadow-lg shadow-sky-900/30 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-purple-300 hover:bg-purple-200 text-purple-950 shadow-lg shadow-purple-950/40 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             <FileCheck2 className="w-4 h-4" />
             <span>{t.hero.ctaExperience}</span>
@@ -98,7 +98,7 @@ export const Hero: React.FC = () => {
           <a
             href="#projects"
             id="hero-cta-projects"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-slate-600 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700 hover:border-purple-300/40 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             <span>{t.hero.ctaProjects}</span>
           </a>
@@ -108,17 +108,17 @@ export const Hero: React.FC = () => {
             type="button"
             id="hero-cta-copy-email"
             onClick={handleCopyEmail}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/80 hover:border-sky-500/50 transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-slate-700/80 hover:border-purple-300/40 transition-all cursor-pointer"
             title="Copy email: johanirfan123@gmail.com"
           >
             {copied ? (
               <>
-                <Check className="w-4 h-4 text-emerald-400" />
-                <span className="text-emerald-300 font-semibold">{t.hero.copiedEmail}</span>
+                <Check className="w-4 h-4 text-purple-300" />
+                <span className="text-purple-200 font-semibold">{t.hero.copiedEmail}</span>
               </>
             ) : (
               <>
-                <Mail className="w-4 h-4 text-sky-400" />
+                <Mail className="w-4 h-4 text-purple-300" />
                 <span>johanirfan123@gmail.com</span>
               </>
             )}
@@ -130,46 +130,46 @@ export const Hero: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             id="hero-cta-linkedin"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/80 hover:border-sky-500/50 transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-slate-700/80 hover:border-purple-300/40 transition-all"
             aria-label="Visit Muhammad Johan Irfan LinkedIn profile"
           >
             <span>LinkedIn</span>
-            <ExternalLink className="w-4 h-4 text-sky-400" />
+            <ExternalLink className="w-4 h-4 text-purple-300" />
           </a>
         </div>
 
         {/* Quick Highlights Strip */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl w-full text-left">
-          <div className="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800">
+          <div className="p-3.5 rounded-lg bg-slate-900/80 border border-purple-950/70 hover:border-purple-300/40 transition-colors">
             <div className="text-[11px] text-slate-400 uppercase font-mono tracking-wider">Internship</div>
             <div className="text-sm font-bold text-white mt-0.5">GovTech Malaysia</div>
-            <div className="text-xs text-sky-400">Kementerian Digital</div>
+            <div className="text-xs text-purple-300">Kementerian Digital</div>
           </div>
-          <div className="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800">
+          <div className="p-3.5 rounded-lg bg-slate-900/80 border border-purple-950/70 hover:border-purple-300/40 transition-colors">
             <div className="text-[11px] text-slate-400 uppercase font-mono tracking-wider">Academic</div>
             <div className="text-sm font-bold text-white mt-0.5">CGPA 3.54</div>
-            <div className="text-xs text-emerald-400">5x Dean&apos;s List</div>
+            <div className="text-xs text-violet-300">5x Dean&apos;s List</div>
           </div>
-          <div className="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800">
+          <div className="p-3.5 rounded-lg bg-slate-900/80 border border-purple-950/70 hover:border-purple-300/40 transition-colors">
             <div className="text-[11px] text-slate-400 uppercase font-mono tracking-wider">Focus</div>
             <div className="text-sm font-bold text-white mt-0.5">Info Security</div>
-            <div className="text-xs text-slate-300">Requirements & Dev</div>
+            <div className="text-xs text-purple-200">Requirements & Dev</div>
           </div>
-          <div className="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800">
+          <div className="p-3.5 rounded-lg bg-slate-900/80 border border-purple-950/70 hover:border-purple-300/40 transition-colors">
             <div className="text-[11px] text-slate-400 uppercase font-mono tracking-wider">Leadership</div>
             <div className="text-sm font-bold text-white mt-0.5">Archery Captain</div>
-            <div className="text-xs text-amber-400">IIUM Mustang</div>
+            <div className="text-xs text-amber-300">IIUM Mustang</div>
           </div>
         </div>
 
         {/* Scroll down indicator */}
         <a
           href="#about"
-          className="mt-12 text-slate-500 hover:text-slate-300 transition-colors flex flex-col items-center gap-1 focus:outline-none"
+          className="mt-12 text-slate-500 hover:text-purple-300 transition-colors flex flex-col items-center gap-1 focus:outline-none"
           aria-label="Scroll down to About section"
         >
           <span className="text-[11px] font-mono tracking-wider uppercase">Explore</span>
-          <ArrowDown className="w-4 h-4 animate-bounce text-sky-400" />
+          <ArrowDown className="w-4 h-4 animate-bounce text-purple-300" />
         </a>
       </div>
     </section>
