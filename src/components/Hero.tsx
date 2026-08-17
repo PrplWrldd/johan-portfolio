@@ -97,17 +97,9 @@ export const Hero: React.FC = () => {
         {/* Role & Specialization Headline */}
         <p
           id="hero-candidate-headline"
-          className="text-base sm:text-xl font-semibold text-[var(--text-secondary)] max-w-2xl mx-auto mb-5 leading-snug"
+          className="text-base sm:text-xl font-semibold text-[var(--text-secondary)] max-w-2xl mx-auto mb-8 leading-snug"
         >
           {t.hero.headline}
-        </p>
-
-        {/* One-line Hook */}
-        <p
-          id="hero-candidate-hook"
-          className="text-sm sm:text-base text-[var(--text-muted)] max-w-2xl mx-auto mb-8 leading-relaxed"
-        >
-          {t.hero.hook}
         </p>
 
         {/* Primary Call-to-Actions */}
