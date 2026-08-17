@@ -106,8 +106,8 @@ export const Achievements: React.FC = () => {
 
               {/* Bottom Footer */}
               <div className="mt-6 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                <span className="capitalize">{item.category} Recognition</span>
-                <span className="text-sky-400 font-semibold">Verified Honor</span>
+                <span className="capitalize">{item.category}</span>
+                <span className="text-sky-400 font-semibold">Verified</span>
               </div>
             </div>
           ))}

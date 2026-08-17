@@ -146,19 +146,19 @@ export const Hero: React.FC = () => {
             <div className="text-xs text-sky-400">Kementerian Digital</div>
           </div>
           <div className="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800">
-            <div className="text-[11px] text-slate-400 uppercase font-mono tracking-wider">Degree & CGPA</div>
+            <div className="text-[11px] text-slate-400 uppercase font-mono tracking-wider">Academic</div>
             <div className="text-sm font-bold text-white mt-0.5">CGPA 3.54</div>
             <div className="text-xs text-emerald-400">5x Dean&apos;s List</div>
           </div>
           <div className="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800">
-            <div className="text-[11px] text-slate-400 uppercase font-mono tracking-wider">Specialisation</div>
-            <div className="text-sm font-bold text-white mt-0.5">Info Assurance</div>
-            <div className="text-xs text-slate-300">Security & Privacy</div>
+            <div className="text-[11px] text-slate-400 uppercase font-mono tracking-wider">Focus</div>
+            <div className="text-sm font-bold text-white mt-0.5">Info Security</div>
+            <div className="text-xs text-slate-300">Requirements & Dev</div>
           </div>
           <div className="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800">
             <div className="text-[11px] text-slate-400 uppercase font-mono tracking-wider">Leadership</div>
-            <div className="text-sm font-bold text-white mt-0.5">Captain</div>
-            <div className="text-xs text-amber-400">IIUM Mustang Archery</div>
+            <div className="text-sm font-bold text-white mt-0.5">Archery Captain</div>
+            <div className="text-xs text-amber-400">IIUM Mustang</div>
           </div>
         </div>
 
@@ -168,7 +168,7 @@ export const Hero: React.FC = () => {
           className="mt-12 text-slate-500 hover:text-slate-300 transition-colors flex flex-col items-center gap-1 focus:outline-none"
           aria-label="Scroll down to About section"
         >
-          <span className="text-[11px] font-mono tracking-wider uppercase">Scroll to explore</span>
+          <span className="text-[11px] font-mono tracking-wider uppercase">Explore</span>
           <ArrowDown className="w-4 h-4 animate-bounce text-sky-400" />
         </a>
       </div>

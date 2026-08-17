@@ -23,14 +23,14 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <div className="flex items-center gap-2 mb-1">
               <span className="text-base font-bold text-white tracking-tight">
-                Muhammad Johan Irfan bin Khairudin
+                Muhammad Johan Irfan
               </span>
               <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-sky-950 text-sky-400 border border-sky-800">
                 GovTech & IIUM
               </span>
             </div>
             <p className="text-xs text-slate-400 max-w-md">
-              Requirements Engineer & IT Student specialising in Information Assurance & Security.
+              Requirements Engineer & IT Student (Information Security).
             </p>
           </div>
 

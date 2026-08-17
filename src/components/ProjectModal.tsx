@@ -192,7 +192,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         {/* Modal Footer / CTAs */}
         <div className="p-5 sm:p-6 border-t border-slate-800 bg-slate-950/90 flex flex-wrap items-center justify-between gap-3 sticky bottom-0">
           <div className="flex items-center gap-2 text-xs text-slate-400 font-mono">
-            <span>Repository Placeholder (Ready for real links)</span>
+            <span>Demo Links & Architecture</span>
           </div>
 
           <div className="flex items-center gap-2.5">

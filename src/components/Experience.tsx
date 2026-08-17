@@ -127,7 +127,7 @@ export const Experience: React.FC = () => {
                       {exp.projects[activeProjectIdx].tag}
                     </span>
                     <span className="text-xs text-slate-400 font-mono">
-                      Deliverables Verified
+                      Deliverables
                     </span>
                   </div>
 
@@ -141,7 +141,7 @@ export const Experience: React.FC = () => {
 
                   <div className="space-y-2 mb-4">
                     <div className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
-                      Authored Deliverables & Artifacts:
+                      Deliverables:
                     </div>
                     <ul className="space-y-2">
                       {exp.projects[activeProjectIdx].deliverables.map((item, dIdx) => (
@@ -155,7 +155,7 @@ export const Experience: React.FC = () => {
                 </div>
 
                 <div className="pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-mono">
-                  <span>Standard: Public Sector SRS/SDS</span>
+                  <span>Public Sector Standard</span>
                   <span className="text-sky-400">GovTech Malaysia</span>
                 </div>
               </div>
