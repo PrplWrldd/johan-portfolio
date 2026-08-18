@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
 import { Menu, X, Globe, Shield, ExternalLink, Sun, Moon, Laptop } from 'lucide-react';
@@ -69,14 +70,21 @@ export const Navbar: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Brand Logo & Pill */}
+          {/* Brand Logo & Profile Avatar */}
           <a
             href="#hero"
             id="brand-logo-link"
             className="flex items-center gap-2.5 group focus:outline-none"
           >
-            <div className="w-9 h-9 rounded-lg bg-purple-500/10 dark:bg-purple-300/15 border border-purple-500/30 dark:border-purple-300/30 flex items-center justify-center text-purple-700 dark:text-purple-200 font-bold text-sm tracking-wider group-hover:bg-purple-500/20 dark:group-hover:bg-purple-300/25 transition-colors shadow-sm shadow-purple-950/10 dark:shadow-purple-950/40">
-              JI
+            <div className="relative w-9 h-9 rounded-lg overflow-hidden border border-purple-400/40 dark:border-purple-300/30 shadow-sm shadow-purple-950/10 dark:shadow-purple-950/40 group-hover:border-purple-500 dark:group-hover:border-purple-300 transition-all bg-purple-100 dark:bg-purple-950/50 shrink-0">
+              <Image
+                src="/images/johan-profile.jpg"
+                alt="Muhammad Johan Irfan"
+                fill
+                priority
+                sizes="36px"
+                className="object-cover object-[center_20%] group-hover:scale-105 transition-transform duration-200"
+              />
             </div>
             <div className="flex flex-col">
               <span className="text-sm font-semibold tracking-tight text-[var(--text-heading)] group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
