@@ -26,7 +26,7 @@ export const Contact: React.FC = () => {
     <section
       id="contact"
       aria-label="Contact and Communication"
-      className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border-subtle)] bg-[var(--bg-main)] relative transition-colors duration-300"
+      className="scroll-mt-20 py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border-subtle)] bg-[var(--bg-main)] relative transition-colors duration-300"
     >
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}

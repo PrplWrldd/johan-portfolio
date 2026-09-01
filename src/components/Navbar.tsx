@@ -16,24 +16,38 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 15);
 
-      const sections = ['hero', 'about', 'skills', 'experience', 'projects', 'achievements', 'contact'];
-      const scrollPosition = window.scrollY + 120;
+      // Check if user is at the bottom of the page
+      if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 60) {
+        setActiveSection('contact');
+        return;
+      }
 
-      for (const section of sections) {
-        const el = document.getElementById(section);
+      if (scrollY < 100) {
+        setActiveSection('hero');
+        return;
+      }
+
+      const sections = ['about', 'skills', 'experience', 'projects', 'achievements', 'contact'];
+      const scrollPosition = scrollY + 140;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const sectionId = sections[i];
+        const el = document.getElementById(sectionId);
         if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
+          const rect = el.getBoundingClientRect();
+          const top = rect.top + scrollY;
+          if (scrollPosition >= top) {
+            setActiveSection(sectionId);
+            return;
           }
         }
       }
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -64,8 +78,10 @@ export const Navbar: React.FC = () => {
   return (
     <header
       id="main-header"
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled ? 'glass-nav py-3 shadow-lg shadow-black/10 dark:shadow-black/40' : 'bg-transparent py-5'
+      className={`fixed top-0 left-0 right-0 z-40 py-3 sm:py-3.5 backdrop-blur-md border-b transition-[background-color,border-color,box-shadow] duration-300 ease-out ${
+        isScrolled
+          ? 'bg-[var(--glass-nav-bg)] border-[var(--glass-nav-border)] shadow-lg shadow-black/10 dark:shadow-purple-950/25'
+          : 'bg-transparent border-transparent shadow-none'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -99,20 +115,23 @@ export const Navbar: React.FC = () => {
 
           {/* Desktop Navigation Links */}
           <nav id="desktop-navigation" className="hidden lg:flex items-center gap-1" aria-label="Main Navigation">
-            {navLinks.map((link) => (
-              <a
-                key={link.id}
-                href={link.href}
-                id={`nav-link-${link.id}`}
-                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150 ${
-                  activeSection === link.id
-                    ? 'text-purple-700 dark:text-purple-100 bg-purple-100 dark:bg-purple-950/60 border border-purple-300/40 dark:border-purple-300/30 shadow-sm shadow-purple-950/10 dark:shadow-purple-950/40 font-semibold'
-                    : 'text-[var(--text-secondary)] hover:text-purple-700 dark:hover:text-purple-200 hover:bg-purple-100/50 dark:hover:bg-purple-950/20'
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <a
+                  key={link.id}
+                  href={link.href}
+                  id={`nav-link-${link.id}`}
+                  className={`relative px-3 py-1.5 rounded-md text-xs font-medium border transition-[color,background-color,border-color,box-shadow] duration-300 ease-out ${
+                    isActive
+                      ? 'text-purple-700 dark:text-purple-100 bg-purple-100 dark:bg-purple-950/60 border-purple-300/40 dark:border-purple-300/30 shadow-sm shadow-purple-950/10 dark:shadow-purple-950/40 font-semibold'
+                      : 'text-[var(--text-secondary)] bg-transparent border-transparent shadow-none hover:text-purple-700 dark:hover:text-purple-200 hover:bg-purple-100/50 dark:hover:bg-purple-950/20'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </nav>
 
           {/* Action Buttons: Theme Toggle + Language Switcher + LinkedIn (Desktop Only) */}
@@ -211,21 +230,24 @@ export const Navbar: React.FC = () => {
           className="lg:hidden glass-nav border-t border-[var(--border-subtle)] px-4 pt-3 pb-6 space-y-2 animate-fade-in shadow-2xl"
         >
           <nav className="flex flex-col space-y-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.id}
-                href={link.href}
-                id={`mobile-nav-${link.id}`}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`px-3 py-2.5 rounded-md text-sm font-medium transition-colors ${
-                  activeSection === link.id
-                    ? 'text-purple-700 dark:text-purple-100 bg-purple-100 dark:bg-purple-950/60 font-semibold border-l-2 border-purple-600 dark:border-purple-300'
-                    : 'text-[var(--text-secondary)] hover:text-[var(--text-heading)] hover:bg-purple-100/60 dark:hover:bg-purple-950/30'
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <a
+                  key={link.id}
+                  href={link.href}
+                  id={`mobile-nav-${link.id}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`px-3 py-2.5 rounded-md text-sm font-medium border-l-2 transition-[color,background-color,border-color] duration-300 ease-out ${
+                    isActive
+                      ? 'text-purple-700 dark:text-purple-100 bg-purple-100 dark:bg-purple-950/60 font-semibold border-purple-600 dark:border-purple-300'
+                      : 'text-[var(--text-secondary)] border-transparent hover:text-[var(--text-heading)] hover:bg-purple-100/60 dark:hover:bg-purple-950/30'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </nav>
 
           <div className="pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between">

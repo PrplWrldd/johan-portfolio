@@ -30,7 +30,7 @@ export const Achievements: React.FC = () => {
     <section
       id="achievements"
       aria-label="Honors, Awards and Sports Leadership"
-      className="py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border-subtle)] bg-[var(--bg-main)] relative transition-colors duration-300"
+      className="scroll-mt-20 py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border-subtle)] bg-[var(--bg-main)] relative transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
