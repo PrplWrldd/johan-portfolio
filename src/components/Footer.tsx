@@ -3,7 +3,7 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { ArrowUp, Mail } from 'lucide-react';
-import { LinkedinIcon } from './Icons';
+import { LinkedinIcon, GithubIcon } from './Icons';
 
 export const Footer: React.FC = () => {
   const { t } = useLanguage();
@@ -42,6 +42,16 @@ export const Footer: React.FC = () => {
               title="Email: johanirfan123@gmail.com"
             >
               <Mail className="w-4 h-4" />
+            </a>
+            <a
+              href="https://github.com/lynx4444"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-lg bg-white dark:bg-slate-900/80 hover:bg-purple-50 dark:hover:bg-purple-950/40 text-slate-700 dark:text-slate-300 hover:text-purple-700 dark:hover:text-purple-200 border border-purple-200 dark:border-purple-950/60 hover:border-purple-300/40 transition-colors shadow-xs"
+              title="GitHub Profile (lynx4444)"
+              aria-label="GitHub Profile"
+            >
+              <GithubIcon className="w-4 h-4" />
             </a>
             <a
               href="https://www.linkedin.com/in/muhammad-johan-irfan-khairudin-a234a6200"

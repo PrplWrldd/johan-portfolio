@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
 import { Menu, X, Globe, Shield, ExternalLink, Sun, Moon, Laptop } from 'lucide-react';
-import { LinkedinIcon } from './Icons';
+import { LinkedinIcon, GithubIcon } from './Icons';
 
 export const Navbar: React.FC = () => {
   const { language, toggleLanguage, t } = useLanguage();
@@ -134,7 +134,7 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* Action Buttons: Theme Toggle + Language Switcher + LinkedIn (Desktop Only) */}
+          {/* Action Buttons: Theme Toggle + Language Switcher + GitHub + LinkedIn (Desktop Only) */}
           <div className="hidden lg:flex items-center gap-2.5">
             {/* Theme Toggle Button */}
             <button
@@ -165,6 +165,19 @@ export const Navbar: React.FC = () => {
               <span className="text-[var(--text-muted)]">/</span>
               <span className={language === 'ms' ? 'font-bold text-purple-700 dark:text-purple-300' : 'text-[var(--text-muted)]'}>BM</span>
             </button>
+
+            {/* GitHub Quick Link */}
+            <a
+              href="https://github.com/lynx4444"
+              target="_blank"
+              rel="noopener noreferrer"
+              id="nav-github-link"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold bg-[var(--bg-subtle-alpha)] border border-[var(--border-subtle)] hover:border-purple-400/40 text-[var(--text-secondary)] hover:text-[var(--text-heading)] transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm"
+            >
+              <GithubIcon className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300" />
+              <span>GitHub</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
 
             {/* LinkedIn Quick Link */}
             <a
@@ -250,16 +263,27 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          <div className="pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between">
+          <div className="pt-3 border-t border-[var(--border-subtle)] flex items-center gap-2">
+            <a
+              href="https://github.com/lynx4444"
+              target="_blank"
+              rel="noopener noreferrer"
+              id="mobile-nav-github"
+              className="flex-1 text-center py-2 px-3 rounded-md text-xs font-semibold bg-[var(--bg-subtle-alpha)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-heading)] hover:bg-purple-100/50 dark:hover:bg-purple-950/40 flex items-center justify-center gap-1.5 shadow-xs"
+            >
+              <GithubIcon className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300" />
+              <span>GitHub</span>
+              <ExternalLink className="w-3 h-3 text-[var(--text-muted)]" />
+            </a>
             <a
               href="https://www.linkedin.com/in/muhammad-johan-irfan-khairudin-a234a6200"
               target="_blank"
               rel="noopener noreferrer"
               id="mobile-nav-linkedin"
-              className="w-full text-center py-2 px-3 rounded-md text-xs font-semibold bg-purple-600 hover:bg-purple-700 text-white dark:bg-purple-300 dark:hover:bg-purple-200 dark:text-purple-950 flex items-center justify-center gap-1.5 shadow-md shadow-purple-950/20 dark:shadow-purple-950/40"
+              className="flex-1 text-center py-2 px-3 rounded-md text-xs font-semibold bg-purple-600 hover:bg-purple-700 text-white dark:bg-purple-300 dark:hover:bg-purple-200 dark:text-purple-950 flex items-center justify-center gap-1.5 shadow-md shadow-purple-950/20 dark:shadow-purple-950/40"
             >
               <LinkedinIcon className="w-3.5 h-3.5" />
-              <span>Connect on LinkedIn</span>
+              <span>LinkedIn</span>
               <ExternalLink className="w-3 h-3" />
             </a>
           </div>
