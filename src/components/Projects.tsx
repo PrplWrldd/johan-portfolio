@@ -7,6 +7,7 @@ import { ProjectModal } from './ProjectModal';
 import { 
   FolderGit2, 
   ExternalLink, 
+  Target,
   MapPin, 
   Utensils, 
   Box, 
@@ -22,6 +23,7 @@ export const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>('all');
 
   const projectIcons: Record<string, React.ReactNode> = {
+    'ianseo-pro': <Target className="w-6 h-6 text-amber-600 dark:text-amber-400" />,
     maqam: <MapPin className="w-6 h-6 text-purple-600 dark:text-purple-300" />,
     'restaurant-pos': <Utensils className="w-6 h-6 text-violet-600 dark:text-violet-300" />,
     'networth-3d': <Box className="w-6 h-6 text-purple-600 dark:text-purple-200" />,
@@ -75,7 +77,7 @@ export const Projects: React.FC = () => {
                 : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-purple-200 dark:border-purple-950/70 hover:bg-purple-50 dark:hover:bg-purple-950/30 hover:border-purple-300'
             }`}
           >
-            Full-Stack Web (Laravel)
+            Full-Stack Web
           </button>
           <button
             type="button"

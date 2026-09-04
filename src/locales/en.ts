@@ -205,6 +205,37 @@ export const en: TranslationDictionary = {
     filterAll: 'All Projects',
     items: [
       {
+        id: 'ianseo-pro',
+        title: 'Ianseo Pro',
+        subtitle: 'Modern & Ad-Free Archery Tournament Hub',
+        category: 'Full-Stack Web App',
+        summary: 'High-performance web scraper and real-time tournament engine delivering an ad-free experience for live archery results, brackets, and scorecards.',
+        detailedOverview: 'Transforms clunky, ad-saturated legacy Ianseo.net pages into an elevated, blazing-fast tournament platform with live match scraping, interactive elimination brackets, clean PDF streaming, and target practice simulation.',
+        problemStatement: 'Legacy Ianseo tournament sites are cluttered with invasive ads and tracking banners, causing slow page loads on mobile field devices and unreadable bracket navigation for athletes and coaches.',
+        solutionAndArchitecture: 'Architected with Node.js, Express, and Cheerio for sub-second HTML scraping and in-memory caching, coupled with an ad-free glassmorphism frontend featuring responsive bracket visualization, live radar, and clean JSON/CSV exports.',
+        keyFeatures: [
+          'Real-time web scraping engine with sub-second intelligent caching',
+          '100% ad-free interface stripped of AdSense overlays and tracking scripts',
+          'Interactive elimination brackets with branch connectors and live match scoring',
+          'Qualification scorecards with 10s/Xs tracking and podium highlights',
+          'Official documents explorer with direct in-app clean PDF streaming',
+          'Interactive archery target simulator & score log generator'
+        ],
+        techStack: ['Node.js', 'Express', 'Cheerio (Web Scraping)', 'JavaScript (ES6+)', 'HTML5 / CSS3', 'REST API'],
+        role: 'Creator & Full-Stack Architect',
+        githubUrl: 'https://github.com/lynx4444/ianseo-pro',
+        liveDemoUrl: 'https://ianseo-pro.vercel.app',
+        deliverables: [
+          'Cheerio-Powered Web Scraper Engine',
+          'RESTful Tournament API Endpoints',
+          'Dynamic Bracket & Match Tree Visualizer',
+          'Ad-Free Glassmorphism UI & Dark Mode',
+          'JSON / CSV Dataset Export Utility'
+        ],
+        imagePlaceholderText: 'Ianseo Pro — Live Tournament Scraper & Elimination Brackets',
+        accentColor: '#F59E0B'
+      },
+      {
         id: 'maqam',
         title: 'MAQAM',
         subtitle: 'Cemetery Management & GPS Plot Locator',

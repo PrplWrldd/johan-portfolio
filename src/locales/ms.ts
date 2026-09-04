@@ -205,6 +205,37 @@ export const ms: TranslationDictionary = {
     filterAll: 'Semua Projek',
     items: [
       {
+        id: 'ianseo-pro',
+        title: 'Ianseo Pro',
+        subtitle: 'Hab Kejohanan Memanah Moden & Bebas Iklan',
+        category: 'Aplikasi Web Full-Stack',
+        summary: 'Pengikis web berprestasi tinggi dan enjin kejohanan waktu nyata yang memberikan pengalaman bebas iklan untuk keputusan, carta penyingkiran, dan kad skor memanah.',
+        detailedOverview: 'Mentransformasi laman legasi Ianseo.net yang sarat iklan kepada platform kejohanan yang amat pantas dengan pengikisan perlawanan langsung, carta penyingkiran interaktif, penstriman PDF bersih, dan simulasi sasaran memanah.',
+        problemStatement: 'Laman kejohanan Ianseo legasi sarat dengan iklan pihak ketiga yang mengganggu, mengakibatkan pemuatan halaman perlahan pada peranti mudah alih di padang sasar serta carta penyingkiran yang sukar dinavigasi.',
+        solutionAndArchitecture: 'Dibina berasaskan Node.js, Express, dan Cheerio untuk pengikisan HTML sub-saat dan simpanan cache memori pintar, digandingkan dengan antara muka moden glassmorphism tanpa iklan, visualisasi carta penyingkiran responsif, dan eksport data bersih JSON/CSV.',
+        keyFeatures: [
+          'Enjin pengikis data waktu nyata dengan cache pintar sub-saat',
+          '100% bebas iklan tanpa skrip penjejak dan sepanduk AdSense',
+          'Visualisasi carta penyingkiran interaktif dengan skor perlawanan langsung',
+          'Kad skor kelayakan terperinci dengan kiraan 10s/Xs dan sorotan podium',
+          'Penjelajah dokumen rasmi dengan penstriman PDF bersih tanpa gangguan iklan',
+          'Simulator sasaran memanah interaktif dan pencatat skor panahan'
+        ],
+        techStack: ['Node.js', 'Express', 'Cheerio (Web Scraping)', 'JavaScript (ES6+)', 'HTML5 / CSS3', 'REST API'],
+        role: 'Pencipta & Arkitek Full-Stack',
+        githubUrl: 'https://github.com/lynx4444/ianseo-pro',
+        liveDemoUrl: 'https://ianseo-pro.vercel.app',
+        deliverables: [
+          'Enjin Pengikis Web Berasaskan Cheerio',
+          'Titik Akhir REST API Kejohanan',
+          'Visualizer Carta Braket & Pokok Perlawanan',
+          'Antara Muka Glassmorphism Bebas Iklan & Mod Gelap',
+          'Utiliti Eksport Set Data JSON / CSV'
+        ],
+        imagePlaceholderText: 'Ianseo Pro — Pengikis Kejohanan & Carta Penyingkiran Langsung',
+        accentColor: '#F59E0B'
+      },
+      {
         id: 'maqam',
         title: 'MAQAM',
         subtitle: 'Pengurusan Perkuburan & Carian Plot GPS',
