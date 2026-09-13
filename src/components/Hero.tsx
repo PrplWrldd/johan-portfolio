@@ -74,13 +74,6 @@ export const Hero: React.FC = () => {
         {/* Verification Status Badges */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
           <span
-            id="hero-badge-govtech"
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-purple-100/90 dark:bg-purple-950/80 text-purple-800 dark:text-purple-200 border border-purple-300/40 dark:border-purple-300/30 shadow-sm backdrop-blur-xs"
-          >
-            <span className="w-2 h-2 rounded-full bg-purple-600 dark:bg-purple-300 animate-pulse" />
-            {t.hero.badgeGovTech}
-          </span>
-          <span
             id="hero-badge-iium"
             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100/90 dark:bg-slate-900/90 text-slate-700 dark:text-slate-300 border border-purple-200 dark:border-slate-700/80 shadow-sm backdrop-blur-xs"
           >
@@ -182,9 +175,9 @@ export const Hero: React.FC = () => {
         {/* Quick Highlights Strip */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl w-full text-left">
           <div className="card-govtech p-3.5 rounded-xl backdrop-blur-xs">
-            <div className="text-[11px] text-[var(--text-muted)] uppercase font-mono tracking-wider">Internship</div>
+            <div className="text-[11px] text-[var(--text-muted)] uppercase font-mono tracking-wider">Experience</div>
             <div className="text-sm font-bold text-[var(--text-heading)] mt-0.5">GovTech Malaysia</div>
-            <div className="text-xs text-purple-700 dark:text-purple-300 font-medium">Kementerian Digital</div>
+            <div className="text-xs text-purple-700 dark:text-purple-300 font-medium">Completed · Kem. Digital</div>
           </div>
           <div className="card-govtech p-3.5 rounded-xl backdrop-blur-xs">
             <div className="text-[11px] text-[var(--text-muted)] uppercase font-mono tracking-wider">Academic</div>

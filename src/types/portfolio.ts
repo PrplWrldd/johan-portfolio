@@ -99,6 +99,7 @@ export interface TranslationDictionary {
     expectedGrad: string;
     cgpaLabel: string;
     currentInternshipTitle: string;
+    currentInternshipRole?: string;
     currentInternshipText: string;
     interestsTitle: string;
     interests: string[];

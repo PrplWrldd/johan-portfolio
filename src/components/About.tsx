@@ -80,7 +80,7 @@ export const About: React.FC = () => {
                     </span>
                   </div>
                   <p className="text-xs font-semibold text-purple-700 dark:text-purple-300 uppercase tracking-wider mb-2">
-                    Requirements Engineer & BA Intern
+                    {t.about.currentInternshipRole || 'Former Requirements Engineer & BA Intern'}
                   </p>
                   <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
                     {t.about.currentInternshipText}

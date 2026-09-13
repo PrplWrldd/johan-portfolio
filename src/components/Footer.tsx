@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
                 Muhammad Johan Irfan
               </span>
               <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-100 dark:bg-purple-950/70 text-purple-800 dark:text-purple-200 border border-purple-300/40 dark:border-purple-300/30 shadow-sm">
-                GovTech & IIUM
+                Ex-GovTech & IIUM
               </span>
             </div>
             <p className="text-xs text-[var(--text-muted)] max-w-md">

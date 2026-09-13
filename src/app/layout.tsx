@@ -7,7 +7,7 @@ import { ThemeProvider } from '../context/ThemeContext';
 export const metadata: Metadata = {
   title: 'Muhammad Johan Irfan | Requirements Engineer & Full-Stack Developer',
   description:
-    'Portfolio of Muhammad Johan Irfan bin Khairudin — Requirements Engineer / Business Analyst Intern at GovTech Malaysia (Kementerian Digital) and Final-Year IT Student at IIUM Gombak specialising in Information Assurance & Security.',
+    'Portfolio of Muhammad Johan Irfan bin Khairudin — Former Requirements Engineer / Business Analyst Intern at GovTech Malaysia (Kementerian Digital) and Final-Year IT Student at IIUM Gombak specialising in Information Assurance & Security.',
   keywords: [
     'Muhammad Johan Irfan',
     'Johan Irfan',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Muhammad Johan Irfan | Requirements Engineer & Full-Stack Developer',
     description:
-      'Requirements Engineer / BA Intern at GovTech Malaysia (Kementerian Digital) & BIT Student (Information Assurance) at IIUM.',
+      'Former Requirements Engineer / BA Intern at GovTech Malaysia (Kementerian Digital) & BIT Student (Information Assurance) at IIUM.',
     type: 'website',
     locale: 'en_US',
     alternateLocale: 'ms_MY',
