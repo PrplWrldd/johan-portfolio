@@ -19,7 +19,7 @@ A modern, high-performance developer and requirements engineer portfolio website
 - **💻 Interactive Project Portfolio**:
   - Comprehensive modal breakdowns with architecture highlights, tech stacks, GitHub source links, and live demos.
 - **🏆 Leadership & Academic Honors**:
-  - Academic excellence (CGPA 3.54, 5x Dean's List at IIUM) and Archery Team Captaincy (SAAC Championship 2025).
+  - Academic excellence (CGPA 3.57, 5x Dean's List at IIUM) and Archery Team Captaincy (Taylor's Archery 2026 National Champion, SAAC 2025).
 - **📫 Streamlined Contact Channels**:
   - One-click copy email button, direct compose link, and LinkedIn integration.
 

@@ -9,9 +9,10 @@ import {
   ExternalLink, 
   Target,
   MapPin, 
-  Utensils, 
   Box, 
-  Bus, 
+  Landmark, 
+  GraduationCap, 
+  Palette,
   ChevronRight, 
   Layers
 } from 'lucide-react';
@@ -24,15 +25,23 @@ export const Projects: React.FC = () => {
 
   const projectIcons: Record<string, React.ReactNode> = {
     'ianseo-pro': <Target className="w-6 h-6 text-amber-600 dark:text-amber-400" />,
-    maqam: <MapPin className="w-6 h-6 text-purple-600 dark:text-purple-300" />,
-    'restaurant-pos': <Utensils className="w-6 h-6 text-violet-600 dark:text-violet-300" />,
-    'networth-3d': <Box className="w-6 h-6 text-purple-600 dark:text-purple-200" />,
-    'iium-bus-tracker': <Bus className="w-6 h-6 text-pink-600 dark:text-pink-300" />,
+    maqam: <MapPin className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />,
+    'networth-3d': <Box className="w-6 h-6 text-purple-600 dark:text-purple-300" />,
+    'hansard-parliament': <Landmark className="w-6 h-6 text-violet-600 dark:text-violet-300" />,
+    'portal-sekolahku': <GraduationCap className="w-6 h-6 text-sky-600 dark:text-sky-300" />,
+    'myds-system': <Palette className="w-6 h-6 text-pink-600 dark:text-pink-300" />,
   };
 
   const filteredProjects = activeFilter === 'all'
     ? t.projects.items
-    : t.projects.items.filter(p => p.category.toLowerCase().includes(activeFilter.toLowerCase()));
+    : t.projects.items.filter(p => {
+        const cat = p.category.toLowerCase();
+        if (activeFilter === 'full-stack') return cat.includes('full-stack');
+        if (activeFilter === '3d') return cat.includes('3d');
+        if (activeFilter === 'public') return cat.includes('public') || p.id.includes('hansard') || p.id.includes('sekolahku');
+        if (activeFilter === 'design') return cat.includes('design') || p.id.includes('myds');
+        return cat.includes(activeFilter.toLowerCase());
+      });
 
   return (
     <section
@@ -92,14 +101,25 @@ export const Projects: React.FC = () => {
           </button>
           <button
             type="button"
-            onClick={() => setActiveFilter('ui/ux')}
+            onClick={() => setActiveFilter('public')}
             className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
-              activeFilter === 'ui/ux'
+              activeFilter === 'public'
                 ? 'bg-purple-600 text-white dark:bg-purple-300 dark:text-purple-950 font-bold shadow-md'
                 : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-purple-200 dark:border-purple-950/70 hover:bg-purple-50 dark:hover:bg-purple-950/30 hover:border-purple-300'
             }`}
           >
-            UI/UX & Prototyping (Figma)
+            Public Sector Systems
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveFilter('design')}
+            className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
+              activeFilter === 'design'
+                ? 'bg-purple-600 text-white dark:bg-purple-300 dark:text-purple-950 font-bold shadow-md'
+                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-purple-200 dark:border-purple-950/70 hover:bg-purple-50 dark:hover:bg-purple-950/30 hover:border-purple-300'
+            }`}
+          >
+            Design Systems (MYDS)
           </button>
         </div>
 

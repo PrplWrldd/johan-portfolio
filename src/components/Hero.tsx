@@ -87,6 +87,13 @@ export const Hero: React.FC = () => {
             <Award className="w-3.5 h-3.5 text-violet-600 dark:text-violet-300" />
             {t.hero.badgeCgpa}
           </span>
+          <span
+            id="hero-badge-availability"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-50/90 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-200 border border-emerald-300/40 dark:border-emerald-400/30 shadow-sm backdrop-blur-xs"
+          >
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Available Immediately</span>
+          </span>
           {/* Subtle Archery Leadership Badge */}
           <span
             id="hero-badge-archery"
@@ -181,7 +188,7 @@ export const Hero: React.FC = () => {
           </div>
           <div className="card-govtech p-3.5 rounded-xl backdrop-blur-xs">
             <div className="text-[11px] text-[var(--text-muted)] uppercase font-mono tracking-wider">Academic</div>
-            <div className="text-sm font-bold text-[var(--text-heading)] mt-0.5">CGPA 3.54</div>
+            <div className="text-sm font-bold text-[var(--text-heading)] mt-0.5">CGPA 3.57</div>
             <div className="text-xs text-violet-700 dark:text-violet-300 font-medium">5x Dean&apos;s List</div>
           </div>
           <div className="card-govtech p-3.5 rounded-xl backdrop-blur-xs">

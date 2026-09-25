@@ -173,6 +173,16 @@ export interface TranslationDictionary {
     sendButton: string;
     successMessage: string;
     openInEmailClient: string;
+    phoneLabel?: string;
+    phoneValue?: string;
+    locationLabel?: string;
+    locationValue?: string;
+    availabilityTitle?: string;
+    availabilityText?: string;
+    availabilityBadge?: string;
+    referencesTitle?: string;
+    referencesSubtitle?: string;
+    references?: { name: string; title: string; organization: string; email: string }[];
   };
   footer: {
     rights: string;
