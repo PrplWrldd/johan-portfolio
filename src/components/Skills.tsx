@@ -3,25 +3,24 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { 
-  Code2, 
-  Layers, 
+  Code, 
+  Stack, 
   Database, 
   FileText, 
-  Palette, 
-  Wrench, 
+  PaintBrush, 
   Check, 
   Star 
-} from 'lucide-react';
+} from '@phosphor-icons/react';
 
 export const Skills: React.FC = () => {
   const { t } = useLanguage();
 
   const categoryIcons = {
-    languages: <Code2 className="w-5 h-5 text-purple-600 dark:text-purple-300" />,
-    frameworks: <Layers className="w-5 h-5 text-violet-600 dark:text-violet-300" />,
-    dataTools: <Database className="w-5 h-5 text-purple-600 dark:text-purple-200" />,
-    documentation: <FileText className="w-5 h-5 text-violet-600 dark:text-violet-200" />,
-    multimedia: <Palette className="w-5 h-5 text-pink-600 dark:text-pink-300" />,
+    languages: <Code className="w-5 h-5 text-[var(--accent)]" />,
+    frameworks: <Stack className="w-5 h-5 text-[var(--accent)]" />,
+    dataTools: <Database className="w-5 h-5 text-[var(--accent)]" />,
+    documentation: <FileText className="w-5 h-5 text-[var(--accent)]" />,
+    multimedia: <PaintBrush className="w-5 h-5 text-[var(--accent)]" />,
   };
 
   const categories = [
@@ -36,41 +35,40 @@ export const Skills: React.FC = () => {
     <section
       id="skills"
       aria-label="Technical Skills and Capabilities"
-      className="scroll-mt-20 py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border-subtle)] bg-[var(--bg-main)] relative transition-colors duration-300"
+      className="scroll-mt-20 py-24 px-4 sm:px-6 lg:px-8 bg-[var(--bg-main)] transition-colors duration-200"
     >
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="badge-tag bg-purple-100 dark:bg-purple-950/70 text-purple-800 dark:text-purple-200 border border-purple-300/40 dark:border-purple-300/30 mb-3 shadow-sm">
-            <Wrench className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300" />
-            {t.skills.sectionTag}
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header - Left-Aligned */}
+        <div className="text-left max-w-2xl mb-14">
+          <span className="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold mb-2 block">
+            // 02. CAPABILITIES
           </span>
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[var(--text-heading)] mb-4">
+          <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight text-[var(--text-heading)]">
             {t.skills.title}
           </h2>
-          <p className="text-sm sm:text-base text-[var(--text-muted)]">
+          <p className="mt-2 text-base text-[var(--text-muted)] max-w-[65ch]">
             {t.skills.subtitle}
           </p>
         </div>
 
         {/* 5-Card Grid for Skills */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
           {categories.map((cat, idx) => (
             <div
               key={cat.key}
               id={`skill-card-${cat.key}`}
-              className={`card-govtech p-6 rounded-xl flex flex-col justify-between ${
+              className={`card-clean p-6 flex flex-col justify-between ${
                 idx === 3 ? 'md:col-span-2 lg:col-span-2' : ''
               }`}
             >
               <div>
                 {/* Header */}
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="p-2.5 rounded-lg bg-purple-500/10 dark:bg-purple-300/10 border border-purple-500/20 dark:border-purple-300/20">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2.5 rounded-lg bg-[var(--accent-subtle)] border border-[var(--accent-border)]">
                     {cat.icon}
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-[var(--text-heading)]">
+                    <h3 className="text-base font-display font-bold text-[var(--text-heading)]">
                       {cat.data.title}
                     </h3>
                     <p className="text-xs text-[var(--text-muted)]">
@@ -79,21 +77,21 @@ export const Skills: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Skill Pills Matrix */}
-                <div className="mt-4 flex flex-wrap gap-2">
+                {/* Skill Pills Matrix - Flat, single radius, no shadows */}
+                <div className="mt-5 flex flex-wrap gap-2">
                   {cat.data.skills.map((skill, sIdx) => (
                     <div
                       key={sIdx}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border ${
                         skill.highlight
-                          ? 'bg-purple-100 dark:bg-purple-950/60 text-purple-900 dark:text-purple-100 border border-purple-300/50 dark:border-purple-300/40 shadow-sm font-semibold'
-                          : 'bg-white dark:bg-slate-900/70 text-slate-700 dark:text-slate-300 border border-purple-200 dark:border-purple-950/60 hover:border-purple-400 dark:hover:border-purple-300/30'
+                          ? 'bg-[var(--accent-subtle)] text-[var(--text-primary)] border-[var(--accent-border)]'
+                          : 'bg-[var(--bg-subtle)] text-[var(--text-secondary)] border-[var(--border-subtle)]'
                       }`}
                     >
-                      {skill.highlight && <Star className="w-3 h-3 text-purple-600 dark:text-purple-300 fill-purple-600/20 dark:fill-purple-300/20" />}
+                      {skill.highlight && <Star className="w-3 h-3 text-[var(--accent)]" weight="fill" />}
                       <span className="font-semibold text-[var(--text-heading)]">{skill.name}</span>
                       {skill.level && (
-                        <span className="text-[10px] text-[var(--text-muted)] font-mono pl-1 border-l border-slate-300 dark:border-slate-700">
+                        <span className="text-[10px] text-[var(--text-muted)] font-mono pl-1 border-l border-neutral-300 dark:border-neutral-700">
                           {skill.level}
                         </span>
                       )}
@@ -102,10 +100,10 @@ export const Skills: React.FC = () => {
                 </div>
               </div>
 
-              {/* Bottom tag indicating relevance */}
-              <div className="mt-5 pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between text-[11px] text-[var(--text-muted)] font-mono">
+              {/* Bottom footer text */}
+              <div className="mt-6 pt-4 flex items-center justify-between text-[11px] text-[var(--text-muted)] font-mono">
                 <span>{cat.data.skills.length} competencies</span>
-                <span className="text-purple-700 dark:text-purple-300 flex items-center gap-1 font-medium">
+                <span className="text-[var(--accent)] flex items-center gap-1 font-medium">
                   <Check className="w-3 h-3" /> Industry standard
                 </span>
               </div>

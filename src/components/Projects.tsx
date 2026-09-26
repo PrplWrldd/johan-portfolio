@@ -1,214 +1,204 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { useLanguage } from '../context/LanguageContext';
 import { ProjectItem } from '../types/portfolio';
 import { ProjectModal } from './ProjectModal';
 import { 
-  FolderGit2, 
-  ExternalLink, 
-  Target,
-  MapPin, 
-  Box, 
-  Landmark, 
-  GraduationCap, 
-  Palette,
-  ChevronRight, 
-  Layers
-} from 'lucide-react';
-import { GithubIcon } from './Icons';
+  FolderSimple, 
+  ArrowSquareOut, 
+  CaretRight, 
+  MagnifyingGlass,
+  ArrowCounterClockwise,
+  GithubLogo
+} from '@phosphor-icons/react';
 
 export const Projects: React.FC = () => {
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>('all');
 
-  const projectIcons: Record<string, React.ReactNode> = {
-    'ianseo-pro': <Target className="w-6 h-6 text-amber-600 dark:text-amber-400" />,
-    maqam: <MapPin className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />,
-    'networth-3d': <Box className="w-6 h-6 text-purple-600 dark:text-purple-300" />,
-    'hansard-parliament': <Landmark className="w-6 h-6 text-violet-600 dark:text-violet-300" />,
-    'portal-sekolahku': <GraduationCap className="w-6 h-6 text-sky-600 dark:text-sky-300" />,
-    'myds-system': <Palette className="w-6 h-6 text-pink-600 dark:text-pink-300" />,
-  };
-
   const filteredProjects = activeFilter === 'all'
     ? t.projects.items
     : t.projects.items.filter(p => {
         const cat = p.category.toLowerCase();
-        if (activeFilter === 'full-stack') return cat.includes('full-stack');
-        if (activeFilter === '3d') return cat.includes('3d');
-        if (activeFilter === 'public') return cat.includes('public') || p.id.includes('hansard') || p.id.includes('sekolahku');
-        if (activeFilter === 'design') return cat.includes('design') || p.id.includes('myds');
+        if (activeFilter === 'full-stack') return cat.includes('full-stack') || cat.includes('timbunan');
+        if (activeFilter === '3d') return cat.includes('3d') || cat.includes('grafik');
+        if (activeFilter === 'public') return cat.includes('public') || cat.includes('awam') || p.id.includes('hansard') || p.id.includes('sekolahku');
+        if (activeFilter === 'design') return cat.includes('design') || cat.includes('reka bentuk') || p.id.includes('myds');
         return cat.includes(activeFilter.toLowerCase());
       });
+
+  const filterButtons = [
+    { id: 'all', label: t.projects.filterAll },
+    { id: 'full-stack', label: 'Full-Stack Web' },
+    { id: '3d', label: '3D Graphics' },
+    { id: 'public', label: 'Public Sector' },
+    { id: 'design', label: 'Design Systems' },
+  ];
 
   return (
     <section
       id="projects"
       aria-label="Featured Software and Design Projects"
-      className="scroll-mt-20 py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border-subtle)] bg-[var(--bg-main)] relative transition-colors duration-300"
+      className="scroll-mt-20 py-24 px-4 sm:px-6 lg:px-8 bg-[var(--bg-main)] transition-colors duration-200"
     >
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="badge-tag bg-purple-100 dark:bg-purple-950/70 text-purple-800 dark:text-purple-200 border border-purple-300/40 dark:border-purple-300/30 mb-3 shadow-sm">
-            <FolderGit2 className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300" />
-            {t.projects.sectionTag}
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header - Left-Aligned */}
+        <div className="text-left max-w-2xl mb-10">
+          <span className="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold mb-2 block">
+            // 04. WORKS
           </span>
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[var(--text-heading)] mb-4">
+          <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight text-[var(--text-heading)]">
             {t.projects.title}
           </h2>
-          <p className="text-sm sm:text-base text-[var(--text-muted)]">
+          <p className="mt-2 text-base text-[var(--text-muted)] max-w-[65ch]">
             {t.projects.subtitle}
           </p>
         </div>
 
-        {/* Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
-          <button
-            type="button"
-            onClick={() => setActiveFilter('all')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
-              activeFilter === 'all'
-                ? 'bg-purple-600 text-white dark:bg-purple-300 dark:text-purple-950 font-bold shadow-md'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-purple-200 dark:border-purple-950/70 hover:bg-purple-50 dark:hover:bg-purple-950/30 hover:border-purple-300'
-            }`}
-          >
-            {t.projects.filterAll}
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveFilter('full-stack')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
-              activeFilter === 'full-stack'
-                ? 'bg-purple-600 text-white dark:bg-purple-300 dark:text-purple-950 font-bold shadow-md'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-purple-200 dark:border-purple-950/70 hover:bg-purple-50 dark:hover:bg-purple-950/30 hover:border-purple-300'
-            }`}
-          >
-            Full-Stack Web
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveFilter('3d')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
-              activeFilter === '3d'
-                ? 'bg-purple-600 text-white dark:bg-purple-300 dark:text-purple-950 font-bold shadow-md'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-purple-200 dark:border-purple-950/70 hover:bg-purple-50 dark:hover:bg-purple-950/30 hover:border-purple-300'
-            }`}
-          >
-            3D Graphics (Three.js)
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveFilter('public')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
-              activeFilter === 'public'
-                ? 'bg-purple-600 text-white dark:bg-purple-300 dark:text-purple-950 font-bold shadow-md'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-purple-200 dark:border-purple-950/70 hover:bg-purple-50 dark:hover:bg-purple-950/30 hover:border-purple-300'
-            }`}
-          >
-            Public Sector Systems
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveFilter('design')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
-              activeFilter === 'design'
-                ? 'bg-purple-600 text-white dark:bg-purple-300 dark:text-purple-950 font-bold shadow-md'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-purple-200 dark:border-purple-950/70 hover:bg-purple-50 dark:hover:bg-purple-950/30 hover:border-purple-300'
-            }`}
-          >
-            Design Systems (MYDS)
-          </button>
-        </div>
-
-        {/* 4 Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {filteredProjects.map((project) => (
-            <article
-              key={project.id}
-              id={`project-card-${project.id}`}
-              className="card-govtech rounded-2xl p-6 sm:p-7 flex flex-col justify-between group hover:border-purple-400 dark:hover:border-purple-300/40 transition-all"
+        {/* Filter Bar - Left-Aligned, Single Radius (rounded-lg) */}
+        <div className="flex flex-wrap items-center gap-2 mb-12">
+          {filterButtons.map((btn) => (
+            <button
+              key={btn.id}
+              type="button"
+              onClick={() => setActiveFilter(btn.id)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors cursor-pointer ${
+                activeFilter === btn.id
+                  ? 'bg-blue-600 text-white border-blue-600 font-semibold'
+                  : 'bg-[var(--bg-card)] text-[var(--text-secondary)] border-[var(--border-subtle)] hover:border-[var(--border-hover)] hover:text-[var(--text-heading)]'
+              }`}
             >
-              <div>
-                {/* Card Top: Category & Icon */}
-                <div className="flex items-start justify-between gap-3 mb-4">
-                  <div className="p-3 rounded-xl bg-purple-500/10 dark:bg-slate-900/80 border border-purple-500/20 dark:border-purple-950/60 group-hover:border-purple-400/40 dark:group-hover:border-purple-300/30 transition-colors">
-                    {projectIcons[project.id] || <Layers className="w-6 h-6 text-purple-600 dark:text-purple-300" />}
-                  </div>
-                  <span className="text-xs font-mono px-2.5 py-1 rounded bg-purple-100 dark:bg-purple-950/60 text-purple-800 dark:text-purple-200 border border-purple-300/40 dark:border-purple-300/30 font-medium">
-                    {project.category}
-                  </span>
-                </div>
-
-                {/* Title & Subtitle */}
-                <h3 className="text-xl font-bold text-[var(--text-heading)] mb-1 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-xs font-medium text-[var(--text-muted)] mb-3">
-                  {project.subtitle}
-                </p>
-
-                {/* Summary */}
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
-                  {project.summary}
-                </p>
-
-                {/* Tech Stack Badges */}
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {project.techStack.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2 py-0.5 rounded text-[11px] font-mono bg-purple-50/80 dark:bg-slate-900/80 text-purple-900 dark:text-purple-200/90 border border-purple-200 dark:border-purple-950/80"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between gap-3">
-                <button
-                  type="button"
-                  id={`btn-details-${project.id}`}
-                  onClick={() => setSelectedProject(project)}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-700 dark:text-purple-300 hover:text-purple-900 dark:hover:text-purple-200 cursor-pointer focus:outline-none"
-                  aria-label={`${t.projects.viewDetailsAria} ${project.title}`}
-                >
-                  <span>{t.projects.viewDetails}</span>
-                  <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </button>
-
-                <div className="flex items-center gap-2">
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-lg bg-white dark:bg-slate-900 hover:bg-purple-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-purple-700 dark:hover:text-white border border-purple-200 dark:border-purple-950/80 hover:border-purple-300/40 transition-colors shadow-xs"
-                      title="GitHub Repository"
-                    >
-                      <GithubIcon className="w-3.5 h-3.5" />
-                    </a>
-                  )}
-                  {project.liveDemoUrl && (
-                    <a
-                      href={project.liveDemoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-lg bg-purple-100 dark:bg-purple-950/80 hover:bg-purple-200 dark:hover:bg-purple-900 text-purple-800 dark:text-purple-200 border border-purple-300/40 dark:border-purple-300/30 transition-colors shadow-xs"
-                      title="Live Demo / Prototype"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  )}
-                </div>
-              </div>
-            </article>
+              {btn.label}
+            </button>
           ))}
         </div>
+
+        {/* Empty State Design (Requirement 15: Design the empty states) */}
+        {filteredProjects.length === 0 ? (
+          <div className="card-clean p-10 sm:p-12 text-left max-w-md">
+            <div className="p-2.5 rounded-lg bg-[var(--accent-subtle)] border border-[var(--accent-border)] w-fit mb-4 text-[var(--accent)]">
+              <MagnifyingGlass className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-display font-bold text-[var(--text-heading)] mb-1">
+              {t.projects.emptyStateTitle || 'No projects found'}
+            </h3>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-6 max-w-[60ch]">
+              {t.projects.emptyStateSubtitle || 'No featured projects match the selected category filter at this time.'}
+            </p>
+            <button
+              type="button"
+              onClick={() => setActiveFilter('all')}
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white transition-colors cursor-pointer"
+            >
+              <ArrowCounterClockwise className="w-3.5 h-3.5" />
+              <span>{t.projects.emptyStateReset || 'Reset filter'}</span>
+            </button>
+          </div>
+        ) : (
+          /* Projects Grid - Showing Screenshots, not illustrations */
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+            {filteredProjects.map((project) => (
+              <article
+                key={project.id}
+                id={`project-card-${project.id}`}
+                className="card-clean p-6 flex flex-col justify-between"
+              >
+                <div>
+                  {/* Real UI Screenshot Preview (Requirement 8) */}
+                  <div className="relative aspect-video w-full rounded-lg overflow-hidden border border-[var(--border-subtle)] bg-[var(--bg-subtle)] mb-5">
+                    <Image
+                      src={project.screenshotUrl || `/images/projects/${project.id}.jpg`}
+                      alt={`${project.title} interface screenshot`}
+                      fill
+                      unoptimized
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover object-top"
+                    />
+                  </div>
+
+                  {/* Category & Status */}
+                  <div className="flex items-center justify-between gap-3 mb-2">
+                    <span className="text-xs font-mono text-[var(--accent)] font-semibold">
+                      {project.category}
+                    </span>
+                    <span className="text-[11px] font-mono text-[var(--text-muted)]">
+                      {project.role}
+                    </span>
+                  </div>
+
+                  {/* Title & Subtitle */}
+                  <h3 className="text-xl font-display font-bold text-[var(--text-heading)] mb-1">
+                    {project.title}
+                  </h3>
+                  <p className="text-xs font-medium text-[var(--text-muted)] mb-3">
+                    {project.subtitle}
+                  </p>
+
+                  {/* Summary - Max 70 characters line length */}
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5 max-w-[65ch]">
+                    {project.summary}
+                  </p>
+
+                  {/* Tech Stack Badges - Flat, single radius */}
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {project.techStack.map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className="px-2 py-0.5 rounded-lg text-[11px] font-mono bg-[var(--bg-subtle)] text-[var(--text-secondary)] border border-[var(--border-subtle)]"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Card Action Controls */}
+                <div className="pt-4 flex items-center justify-between gap-3">
+                  <button
+                    type="button"
+                    id={`btn-details-${project.id}`}
+                    onClick={() => setSelectedProject(project)}
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--accent)] hover:text-blue-700 dark:hover:text-blue-300 cursor-pointer focus:outline-none transition-colors"
+                    aria-label={`${t.projects.viewDetailsAria} ${project.title}`}
+                  >
+                    <span>{t.projects.viewDetails}</span>
+                    <CaretRight className="w-3.5 h-3.5" />
+                  </button>
+
+                  <div className="flex items-center gap-2">
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-lg bg-[var(--bg-subtle)] hover:bg-[var(--bg-card-hover)] text-[var(--text-secondary)] hover:text-[var(--text-heading)] border border-[var(--border-subtle)] transition-colors"
+                        title="GitHub Repository"
+                        aria-label="GitHub Repository"
+                      >
+                        <GithubLogo className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                    {project.liveDemoUrl && (
+                      <a
+                        href={project.liveDemoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-lg bg-[var(--accent-subtle)] hover:bg-[var(--accent-border)] text-[var(--accent)] border border-[var(--accent-border)] transition-colors"
+                        title="Live Demo"
+                        aria-label="Live Demo"
+                      >
+                        <ArrowSquareOut className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Detail Modal Dialog */}

@@ -4,8 +4,18 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
-import { Menu, X, Globe, Shield, ExternalLink, Sun, Moon, Laptop } from 'lucide-react';
-import { LinkedinIcon, GithubIcon } from './Icons';
+import { 
+  List, 
+  X, 
+  Globe, 
+  ShieldCheck, 
+  ArrowSquareOut, 
+  Sun, 
+  Moon, 
+  Desktop,
+  LinkedinLogo,
+  GithubLogo
+} from '@phosphor-icons/react';
 
 export const Navbar: React.FC = () => {
   const { language, toggleLanguage, t } = useLanguage();
@@ -19,7 +29,6 @@ export const Navbar: React.FC = () => {
       const scrollY = window.scrollY;
       setIsScrolled(scrollY > 15);
 
-      // Check if user is at the bottom of the page
       if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 60) {
         setActiveSection('contact');
         return;
@@ -63,10 +72,9 @@ export const Navbar: React.FC = () => {
   ];
 
   const getThemeIcon = () => {
-    if (!mounted) return <Laptop className="w-4 h-4 text-purple-600 dark:text-purple-300" />;
-    if (mode === 'system') return <Laptop className="w-4 h-4 text-purple-600 dark:text-purple-300" />;
-    if (mode === 'light') return <Sun className="w-4 h-4 text-amber-500 hover:rotate-45 transition-transform duration-200" />;
-    return <Moon className="w-4 h-4 text-purple-400 hover:-rotate-12 transition-transform duration-200" />;
+    if (!mounted || mode === 'system') return <Desktop className="w-4 h-4 text-[var(--accent)]" />;
+    if (mode === 'light') return <Sun className="w-4 h-4 text-amber-500" />;
+    return <Moon className="w-4 h-4 text-blue-400" />;
   };
 
   const getThemeTitle = () => {
@@ -78,36 +86,37 @@ export const Navbar: React.FC = () => {
   return (
     <header
       id="main-header"
-      className={`fixed top-0 left-0 right-0 z-40 py-3 sm:py-3.5 backdrop-blur-md border-b transition-[background-color,border-color,box-shadow] duration-300 ease-out ${isScrolled
-          ? 'bg-[var(--glass-nav-bg)] border-[var(--glass-nav-border)] shadow-lg shadow-black/10 dark:shadow-purple-950/25'
-          : 'bg-transparent border-transparent shadow-none'
-        }`}
+      className={`fixed top-0 left-0 right-0 z-40 py-3 backdrop-blur-md border-b transition-colors duration-200 ${
+        isScrolled
+          ? 'bg-[var(--nav-bg)] border-[var(--nav-border)]'
+          : 'bg-transparent border-transparent'
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Brand Logo & Profile Avatar */}
+          {/* Brand & Identity */}
           <a
             href="#hero"
             id="brand-logo-link"
-            className="flex items-center gap-2.5 group focus:outline-none"
+            className="flex items-center gap-3 focus:outline-none"
           >
-            <div className="relative w-9 h-9 rounded-lg overflow-hidden border border-purple-400/40 dark:border-purple-300/30 shadow-sm shadow-purple-950/10 dark:shadow-purple-950/40 group-hover:border-purple-500 dark:group-hover:border-purple-300 transition-all bg-purple-100 dark:bg-purple-950/50 shrink-0">
+            <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-neutral-300 dark:border-neutral-700 bg-neutral-200 dark:bg-neutral-800 shrink-0">
               <Image
                 src="/images/johan-profile.jpg"
                 alt="Muhammad Johan Irfan"
                 fill
                 priority
-                sizes="36px"
-                className="object-cover object-[center_20%] group-hover:scale-105 transition-transform duration-200"
+                sizes="32px"
+                className="object-cover object-[center_20%]"
               />
             </div>
-            <div className="flex flex-col">
-              <span className="text-sm font-semibold tracking-tight text-[var(--text-heading)] group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
+            <div className="flex flex-col text-left">
+              <span className="text-sm font-display font-bold tracking-tight text-[var(--text-heading)]">
                 Johan Irfan
               </span>
               <span className="text-[11px] text-[var(--text-muted)] font-mono flex items-center gap-1">
-                <Shield className="w-3 h-3 text-purple-600 dark:text-purple-300 inline" />
-                IIUM
+                <ShieldCheck className="w-3 h-3 text-[var(--accent)] inline" />
+                GovTech · IIUM
               </span>
             </div>
           </a>
@@ -121,10 +130,11 @@ export const Navbar: React.FC = () => {
                   key={link.id}
                   href={link.href}
                   id={`nav-link-${link.id}`}
-                  className={`relative px-3 py-1.5 rounded-md text-xs font-medium border transition-[color,background-color,border-color,box-shadow] duration-300 ease-out ${isActive
-                      ? 'text-purple-700 dark:text-purple-100 bg-purple-100 dark:bg-purple-950/60 border-purple-300/40 dark:border-purple-300/30 shadow-sm shadow-purple-950/10 dark:shadow-purple-950/40 font-semibold'
-                      : 'text-[var(--text-secondary)] bg-transparent border-transparent shadow-none hover:text-purple-700 dark:hover:text-purple-200 hover:bg-purple-100/50 dark:hover:bg-purple-950/20'
-                    }`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors duration-150 ${
+                    isActive
+                      ? 'text-[var(--accent)] bg-[var(--accent-subtle)] border-[var(--accent-border)] font-semibold'
+                      : 'text-[var(--text-secondary)] border-transparent hover:text-[var(--text-heading)] hover:bg-neutral-100 dark:hover:bg-neutral-900'
+                  }`}
                 >
                   {link.label}
                 </a>
@@ -132,36 +142,36 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* Action Buttons: Theme Toggle + Language Switcher + GitHub + LinkedIn (Desktop Only) */}
-          <div className="hidden lg:flex items-center gap-2.5">
+          {/* Action Controls */}
+          <div className="hidden lg:flex items-center gap-2">
             {/* Theme Toggle Button */}
             <button
               type="button"
               id="theme-toggle-btn"
               onClick={toggleTheme}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium bg-[var(--bg-subtle-alpha)] border border-[var(--border-subtle)] hover:border-purple-400/40 text-[var(--text-secondary)] hover:text-[var(--text-heading)] transition-all cursor-pointer shadow-sm"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium bg-[var(--bg-subtle)] border border-[var(--border-subtle)] hover:border-[var(--border-hover)] text-[var(--text-secondary)] hover:text-[var(--text-heading)] transition-colors cursor-pointer"
               title={getThemeTitle()}
               aria-label={getThemeTitle()}
             >
               {getThemeIcon()}
-              <span className="font-mono text-[11px] uppercase font-semibold text-purple-700 dark:text-purple-300">
+              <span className="font-mono text-[11px] uppercase font-semibold text-[var(--accent)]">
                 {mode === 'system' ? 'Auto' : mode}
               </span>
             </button>
 
-            {/* Language Toggle Button */}
+            {/* Language Switcher */}
             <button
               type="button"
               id="lang-toggle-btn"
               onClick={toggleLanguage}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium bg-[var(--bg-subtle-alpha)] border border-[var(--border-subtle)] hover:border-purple-400/40 text-[var(--text-secondary)] hover:text-[var(--text-heading)] transition-all cursor-pointer shadow-sm"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium bg-[var(--bg-subtle)] border border-[var(--border-subtle)] hover:border-[var(--border-hover)] text-[var(--text-secondary)] hover:text-[var(--text-heading)] transition-colors cursor-pointer"
               title={language === 'en' ? 'Tukar ke Bahasa Melayu' : 'Switch to English'}
               aria-label="Toggle language between English and Bahasa Melayu"
             >
-              <Globe className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300" />
-              <span className={language === 'en' ? 'font-bold text-purple-700 dark:text-purple-300' : 'text-[var(--text-muted)]'}>EN</span>
+              <Globe className="w-3.5 h-3.5 text-[var(--accent)]" />
+              <span className={language === 'en' ? 'font-bold text-[var(--accent)]' : 'text-[var(--text-muted)]'}>EN</span>
               <span className="text-[var(--text-muted)]">/</span>
-              <span className={language === 'ms' ? 'font-bold text-purple-700 dark:text-purple-300' : 'text-[var(--text-muted)]'}>BM</span>
+              <span className={language === 'ms' ? 'font-bold text-[var(--accent)]' : 'text-[var(--text-muted)]'}>BM</span>
             </button>
 
             {/* GitHub Quick Link */}
@@ -170,11 +180,10 @@ export const Navbar: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               id="nav-github-link"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold bg-[var(--bg-subtle-alpha)] border border-[var(--border-subtle)] hover:border-purple-400/40 text-[var(--text-secondary)] hover:text-[var(--text-heading)] transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium bg-[var(--bg-subtle)] border border-[var(--border-subtle)] hover:border-[var(--border-hover)] text-[var(--text-secondary)] hover:text-[var(--text-heading)] transition-colors"
             >
-              <GithubIcon className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300" />
+              <GithubLogo className="w-3.5 h-3.5" />
               <span>GitHub</span>
-              <ExternalLink className="w-3 h-3" />
             </a>
 
             {/* LinkedIn Quick Link */}
@@ -183,52 +192,44 @@ export const Navbar: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               id="nav-linkedin-link"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold bg-purple-600 hover:bg-purple-700 text-white dark:bg-purple-300 dark:hover:bg-purple-200 dark:text-purple-950 shadow-md shadow-purple-950/20 dark:shadow-purple-950/40 transition-all hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white transition-colors"
             >
-              <LinkedinIcon className="w-3.5 h-3.5" />
+              <LinkedinLogo className="w-3.5 h-3.5" />
               <span>LinkedIn</span>
-              <ExternalLink className="w-3 h-3" />
             </a>
           </div>
 
-          {/* Mobile / Tablet Controls */}
-          <div className="flex items-center gap-2 lg:hidden">
-            {/* Mobile Theme Toggle */}
+          {/* Mobile Navigation Controls */}
+          <div className="flex items-center gap-1.5 lg:hidden">
             <button
               type="button"
               id="mobile-theme-toggle-btn"
               onClick={toggleTheme}
-              className="inline-flex items-center gap-1 px-2 py-1.5 rounded bg-[var(--bg-subtle-alpha)] border border-[var(--border-subtle)] text-xs font-medium text-[var(--text-secondary)] cursor-pointer"
+              className="p-1.5 rounded-lg bg-[var(--bg-subtle)] border border-[var(--border-subtle)] text-[var(--text-secondary)] cursor-pointer"
               aria-label={getThemeTitle()}
-              title={getThemeTitle()}
             >
               {getThemeIcon()}
-              <span className="font-mono text-[10px] uppercase font-semibold text-purple-700 dark:text-purple-300">
-                {mode === 'system' ? 'Auto' : mode}
-              </span>
             </button>
 
-            {/* Mobile Lang Button */}
             <button
               type="button"
               id="mobile-lang-toggle-btn"
               onClick={toggleLanguage}
-              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded bg-[var(--bg-subtle-alpha)] border border-[var(--border-subtle)] text-xs font-medium text-[var(--text-secondary)] cursor-pointer"
+              className="px-2 py-1 rounded-lg bg-[var(--bg-subtle)] border border-[var(--border-subtle)] text-xs font-mono font-bold text-[var(--accent)] cursor-pointer"
               aria-label="Toggle language"
             >
-              <Globe className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300" />
-              <span className="font-bold text-purple-700 dark:text-purple-300">{language.toUpperCase()}</span>
+              {language.toUpperCase()}
             </button>
 
             <button
               type="button"
               id="mobile-menu-trigger"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-md text-[var(--text-secondary)] hover:text-[var(--text-heading)] hover:bg-purple-100 dark:hover:bg-purple-950/30 focus:outline-none cursor-pointer"
+              className="p-1.5 rounded-lg bg-[var(--bg-subtle)] border border-[var(--border-subtle)] text-[var(--text-secondary)] cursor-pointer"
               aria-expanded={mobileMenuOpen}
-              aria-label="Open mobile navigation menu"
+              aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-4 h-4" /> : <List className="w-4 h-4" />}
             </button>
           </div>
         </div>
@@ -238,7 +239,7 @@ export const Navbar: React.FC = () => {
       {mobileMenuOpen && (
         <div
           id="mobile-nav-drawer"
-          className="lg:hidden glass-nav border-t border-[var(--border-subtle)] px-4 pt-3 pb-6 space-y-2 animate-fade-in shadow-2xl"
+          className="lg:hidden border-t border-[var(--border-subtle)] bg-[var(--bg-card)] px-4 py-4 space-y-2"
         >
           <nav className="flex flex-col space-y-1">
             {navLinks.map((link) => {
@@ -249,10 +250,11 @@ export const Navbar: React.FC = () => {
                   href={link.href}
                   id={`mobile-nav-${link.id}`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`px-3 py-2.5 rounded-md text-sm font-medium border-l-2 transition-[color,background-color,border-color] duration-300 ease-out ${isActive
-                      ? 'text-purple-700 dark:text-purple-100 bg-purple-100 dark:bg-purple-950/60 font-semibold border-purple-600 dark:border-purple-300'
-                      : 'text-[var(--text-secondary)] border-transparent hover:text-[var(--text-heading)] hover:bg-purple-100/60 dark:hover:bg-purple-950/30'
-                    }`}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    isActive
+                      ? 'text-[var(--accent)] bg-[var(--accent-subtle)] font-semibold'
+                      : 'text-[var(--text-secondary)] hover:text-[var(--text-heading)] hover:bg-neutral-100 dark:hover:bg-neutral-900'
+                  }`}
                 >
                   {link.label}
                 </a>
@@ -266,22 +268,20 @@ export const Navbar: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               id="mobile-nav-github"
-              className="flex-1 text-center py-2 px-3 rounded-md text-xs font-semibold bg-[var(--bg-subtle-alpha)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-heading)] hover:bg-purple-100/50 dark:hover:bg-purple-950/40 flex items-center justify-center gap-1.5 shadow-xs"
+              className="flex-1 text-center py-2 px-3 rounded-lg text-xs font-semibold bg-[var(--bg-subtle)] border border-[var(--border-subtle)] text-[var(--text-secondary)] flex items-center justify-center gap-1.5"
             >
-              <GithubIcon className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300" />
+              <GithubLogo className="w-3.5 h-3.5" />
               <span>GitHub</span>
-              <ExternalLink className="w-3 h-3 text-[var(--text-muted)]" />
             </a>
             <a
               href="https://www.linkedin.com/in/muhammad-johan-irfan-khairudin-a234a6200"
               target="_blank"
               rel="noopener noreferrer"
               id="mobile-nav-linkedin"
-              className="flex-1 text-center py-2 px-3 rounded-md text-xs font-semibold bg-purple-600 hover:bg-purple-700 text-white dark:bg-purple-300 dark:hover:bg-purple-200 dark:text-purple-950 flex items-center justify-center gap-1.5 shadow-md shadow-purple-950/20 dark:shadow-purple-950/40"
+              className="flex-1 text-center py-2 px-3 rounded-lg text-xs font-semibold bg-blue-600 text-white flex items-center justify-center gap-1.5"
             >
-              <LinkedinIcon className="w-3.5 h-3.5" />
+              <LinkedinLogo className="w-3.5 h-3.5" />
               <span>LinkedIn</span>
-              <ExternalLink className="w-3 h-3" />
             </a>
           </div>
         </div>

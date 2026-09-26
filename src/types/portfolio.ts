@@ -17,6 +17,7 @@ export interface ProjectItem {
   deliverables?: string[];
   imagePlaceholderText: string;
   accentColor: string;
+  screenshotUrl?: string;
 }
 
 export interface ExperienceItem {
@@ -147,6 +148,9 @@ export interface TranslationDictionary {
     modalTech: string;
     modalDeliverables: string;
     filterAll: string;
+    emptyStateTitle?: string;
+    emptyStateSubtitle?: string;
+    emptyStateReset?: string;
     items: ProjectItem[];
   };
   achievements: {
