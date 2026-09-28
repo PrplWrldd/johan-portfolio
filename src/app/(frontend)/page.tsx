@@ -33,8 +33,8 @@ export default async function HomePage() {
         limit: 100,
       }),
     ]);
-    experiences = expRes.docs || [];
-    projects = projRes.docs || [];
+    experiences = JSON.parse(JSON.stringify(expRes.docs || []));
+    projects = JSON.parse(JSON.stringify(projRes.docs || []));
   } catch (error) {
     console.warn('Could not fetch dynamic CMS data from Payload:', error);
   }

@@ -47,6 +47,9 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: dbConnectionString,
+      max: 3,
+      idleTimeoutMillis: 10000,
+      connectionTimeoutMillis: 10000,
       ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : undefined,
     },
     schemaName: 'payload',

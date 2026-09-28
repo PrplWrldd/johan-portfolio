@@ -79,8 +79,17 @@ export const Projects: React.FC<{ initialProjects?: ProjectInput[] }> = ({ initi
     'myds-system': <Palette className="w-6 h-6 text-pink-600 dark:text-pink-300" />,
   };
 
-  const allProjects: ProjectItem[] = (initialProjects && initialProjects.length > 0)
-    ? initialProjects.map(normalizeProject)
+  const cmsProjects = (initialProjects || []).map(normalizeProject);
+  const allProjects: ProjectItem[] = cmsProjects.length > 0
+    ? [
+        ...cmsProjects,
+        ...t.projects.items.filter(
+          (defaultProj) =>
+            !cmsProjects.some(
+              (cp) => cp.id === defaultProj.id || cp.title.toLowerCase() === defaultProj.title.toLowerCase()
+            )
+        ),
+      ]
     : t.projects.items;
 
   const filteredProjects = activeFilter === 'all'
@@ -209,7 +218,7 @@ export const Projects: React.FC<{ initialProjects?: ProjectInput[] }> = ({ initi
 
                 {/* Tech Stack Badges */}
                 <div className="flex flex-wrap gap-1.5 mb-6">
-                  {project.techStack.map((tech, idx) => (
+                  {(project.techStack || []).map((tech, idx) => (
                     <span
                       key={idx}
                       className="px-2 py-0.5 rounded text-[11px] font-mono bg-purple-50/80 dark:bg-slate-900/80 text-purple-900 dark:text-purple-200/90 border border-purple-200 dark:border-purple-950/80"

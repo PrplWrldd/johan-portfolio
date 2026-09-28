@@ -136,39 +136,43 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           </div>
 
           {/* Key Features */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] font-mono mb-3">
-              {t.projects.modalFeatures}
-            </h4>
-            <ul className="space-y-2">
-              {project.keyFeatures.map((feat, idx) => (
-                <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[var(--text-secondary)]">
-                  <CheckCircle2 className="w-4 h-4 text-purple-600 dark:text-purple-300 shrink-0 mt-0.5" />
-                  <span>{feat}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {Array.isArray(project.keyFeatures) && project.keyFeatures.length > 0 && (
+            <div>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] font-mono mb-3">
+                {t.projects.modalFeatures}
+              </h4>
+              <ul className="space-y-2">
+                {project.keyFeatures.map((feat, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[var(--text-secondary)]">
+                    <CheckCircle2 className="w-4 h-4 text-purple-600 dark:text-purple-300 shrink-0 mt-0.5" />
+                    <span>{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Tech Stack Pills */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] font-mono mb-2.5">
-              {t.projects.modalTech}
-            </h4>
-            <div className="flex flex-wrap gap-2">
-              {project.techStack.map((tech, idx) => (
-                <span
-                  key={idx}
-                  className="px-2.5 py-1 rounded-md text-xs font-mono bg-purple-100 dark:bg-purple-950/60 text-purple-800 dark:text-purple-200 border border-purple-300/40 dark:border-purple-300/30 font-medium"
-                >
-                  {tech}
-                </span>
-              ))}
+          {Array.isArray(project.techStack) && project.techStack.length > 0 && (
+            <div>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] font-mono mb-2.5">
+                {t.projects.modalTech}
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {project.techStack.map((tech, idx) => (
+                  <span
+                    key={idx}
+                    className="px-2.5 py-1 rounded-md text-xs font-mono bg-purple-100 dark:bg-purple-950/60 text-purple-800 dark:text-purple-200 border border-purple-300/40 dark:border-purple-300/30 font-medium"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Key Deliverables */}
-          {project.deliverables && (
+          {Array.isArray(project.deliverables) && project.deliverables.length > 0 && (
             <div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] font-mono mb-2.5">
                 {t.projects.modalDeliverables}

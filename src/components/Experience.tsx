@@ -256,9 +256,15 @@ const ExperienceCard: React.FC<{
 export const Experience: React.FC<{ initialExperiences?: ExperienceInput[] }> = ({ initialExperiences }) => {
   const { t } = useLanguage();
 
-  // If initialExperiences provided and non-empty, use them; otherwise fallback to locale
-  const listToRender: NormalizedExperienceItem[] = (initialExperiences && initialExperiences.length > 0)
-    ? initialExperiences.map(normalizeExperience)
+  // If initialExperiences provided and non-empty, use them merged with defaults
+  const cmsExperiences = (initialExperiences || []).map(normalizeExperience);
+  const listToRender: NormalizedExperienceItem[] = cmsExperiences.length > 0
+    ? [
+        ...cmsExperiences,
+        ...((t.experience.items || []).map(normalizeExperience)).filter(
+          (defExp) => !cmsExperiences.some((ce) => ce.organization.toLowerCase() === defExp.organization.toLowerCase())
+        ),
+      ]
     : (t.experience.items || []).map(normalizeExperience);
 
   return (
