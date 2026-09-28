@@ -1,21 +1,8 @@
 import type { Metadata } from 'next';
-import { Space_Grotesk, Inter } from 'next/font/google';
 import '../globals.css';
 import { Analytics } from '@vercel/analytics/next';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { ThemeProvider } from '@/context/ThemeContext';
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-});
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-body',
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: 'Muhammad Johan Irfan | Requirements Engineer & Full-Stack Developer',
@@ -54,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`scroll-smooth ${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -74,7 +61,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased selection:bg-blue-500/20 selection:text-blue-900 dark:selection:text-blue-100 min-h-screen">
+      <body className="antialiased selection:bg-purple-400/30 selection:text-purple-900 dark:selection:text-purple-100 min-h-screen">
         <ThemeProvider>
           <LanguageProvider>
             {children}

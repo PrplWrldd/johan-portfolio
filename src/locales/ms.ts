@@ -246,9 +246,6 @@ export const ms: TranslationDictionary = {
     modalTech: 'Timbunan Teknologi',
     modalDeliverables: 'Hasil Kerja',
     filterAll: 'Semua Projek',
-    emptyStateTitle: 'Tiada projek dalam kategori ini',
-    emptyStateSubtitle: 'Tiada projek yang sepadan dengan penapis yang dipilih pada masa ini.',
-    emptyStateReset: 'Papar semua projek',
     items: [
       {
         id: 'ianseo-pro',
@@ -279,8 +276,7 @@ export const ms: TranslationDictionary = {
           'Utiliti Eksport Data JSON / CSV'
         ],
         imagePlaceholderText: 'Ianseo Pro — Pengikis Kejohanan Langsung & Carta Penyingkiran',
-        accentColor: '#2563eb',
-        screenshotUrl: '/images/projects/ianseo-pro.jpg'
+        accentColor: '#F59E0B'
       },
       {
         id: 'maqam',
@@ -308,8 +304,7 @@ export const ms: TranslationDictionary = {
           'Pangkalan Data Rekod Boleh Cari'
         ],
         imagePlaceholderText: 'MAQAM — Pengurusan Kubur & Carian Plot GPS',
-        accentColor: '#2563eb',
-        screenshotUrl: '/images/projects/maqam.jpg'
+        accentColor: '#059669'
       },
       {
         id: 'networth-3d',
@@ -337,8 +332,7 @@ export const ms: TranslationDictionary = {
           'Penyepaduan Pengesahan Google OAuth'
         ],
         imagePlaceholderText: 'Visualizer 3D Three.js — Susun Atur Zarah Sfera & Heliks',
-        accentColor: '#2563eb',
-        screenshotUrl: '/images/projects/networth-3d.jpg'
+        accentColor: '#6366F1'
       },
       {
         id: 'hansard-parliament',
@@ -366,8 +360,7 @@ export const ms: TranslationDictionary = {
           'Manual Operasi Sistem Pegawai'
         ],
         imagePlaceholderText: 'Hansard Parlimen — Arkib Digital Parlimen Malaysia',
-        accentColor: '#2563eb',
-        screenshotUrl: '/images/projects/hansard-parliament.jpg'
+        accentColor: '#8B5CF6'
       },
       {
         id: 'portal-sekolahku',
@@ -395,8 +388,7 @@ export const ms: TranslationDictionary = {
           'Spesifikasi Integrasi Pangkalan Data Nasional'
         ],
         imagePlaceholderText: 'Portal Sekolahku — Ekosistem Web Sekolah Awam Kebangsaan',
-        accentColor: '#2563eb',
-        screenshotUrl: '/images/projects/portal-sekolahku.jpg'
+        accentColor: '#0EA5E9'
       },
       {
         id: 'myds-system',
@@ -424,8 +416,7 @@ export const ms: TranslationDictionary = {
           'Panduan Penerimagunaan & Integrasi Pembangun'
         ],
         imagePlaceholderText: 'MYDS — Sistem Reka Bentuk Kerajaan & Komponen UI Boleh Diguna Semula',
-        accentColor: '#2563eb',
-        screenshotUrl: '/images/projects/myds-system.jpg'
+        accentColor: '#EC4899'
       }
     ]
   },

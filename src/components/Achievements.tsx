@@ -4,86 +4,105 @@ import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { 
   Trophy, 
+  Award, 
   Medal, 
   CheckCircle, 
-  CalendarBlank,
-  Target
-} from '@phosphor-icons/react';
+  Calendar 
+} from 'lucide-react';
+import { ArcheryBowIcon, ArcheryTargetIcon } from './Icons';
 
 export const Achievements: React.FC = () => {
   const { t } = useLanguage();
 
   const achievementIcons: Record<string, React.ReactNode> = {
-    'deans-list': <Medal className="w-6 h-6 text-[var(--accent)]" />,
-    'uia-symposium': <Trophy className="w-6 h-6 text-[var(--accent)]" />,
-    'archery-captain': <Target className="w-6 h-6 text-[var(--accent)]" />,
+    'deans-list': <Award className="w-7 h-7 text-purple-600 dark:text-purple-300" />,
+    'uia-symposium': <Trophy className="w-7 h-7 text-violet-600 dark:text-violet-300" />,
+    'archery-captain': <ArcheryBowIcon className="w-7 h-7 text-amber-600 dark:text-amber-300" />,
+  };
+
+  const badgeColors: Record<string, string> = {
+    'deans-list': 'bg-purple-100 dark:bg-purple-950/70 text-purple-800 dark:text-purple-200 border border-purple-300/40 dark:border-purple-300/30',
+    'uia-symposium': 'bg-violet-100 dark:bg-violet-950/70 text-violet-800 dark:text-violet-200 border border-violet-300/40 dark:border-violet-300/30',
+    'archery-captain': 'bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-200 border border-amber-300/40 dark:border-amber-400/30',
   };
 
   return (
     <section
       id="achievements"
       aria-label="Honors, Awards and Sports Leadership"
-      className="scroll-mt-20 py-24 px-4 sm:px-6 lg:px-8 bg-[var(--bg-main)] transition-colors duration-200"
+      className="scroll-mt-20 py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border-subtle)] bg-[var(--bg-main)] relative transition-colors duration-300"
     >
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header - Left-Aligned */}
-        <div className="text-left max-w-2xl mb-14">
-          <span className="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold mb-2 block">
-            {'// 05. HONORS'}
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="badge-tag bg-purple-100 dark:bg-purple-950/70 text-purple-800 dark:text-purple-200 border border-purple-300/40 dark:border-purple-300/30 mb-3 shadow-sm">
+            <Trophy className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300" />
+            {t.achievements.sectionTag}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight text-[var(--text-heading)]">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[var(--text-heading)] mb-4">
             {t.achievements.title}
           </h2>
-          <p className="mt-2 text-base text-[var(--text-muted)] max-w-[65ch]">
+          <p className="text-sm sm:text-base text-[var(--text-muted)]">
             {t.achievements.subtitle}
           </p>
         </div>
 
         {/* 3 Prominent Achievement Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 text-left">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {t.achievements.items.map((item) => (
             <div
               key={item.id}
               id={`achievement-card-${item.id}`}
-              className="card-clean p-6 flex flex-col justify-between"
+              className="card-govtech rounded-2xl p-6 sm:p-7 flex flex-col justify-between"
             >
               <div>
                 {/* Header with Icon and Badge */}
                 <div className="flex items-start justify-between gap-3 mb-5">
-                  <div className="p-2.5 rounded-lg bg-[var(--accent-subtle)] border border-[var(--accent-border)]">
-                    {achievementIcons[item.id] || <Medal className="w-6 h-6 text-[var(--accent)]" />}
+                  <div className={`p-3.5 rounded-xl ${
+                    item.id === 'archery-captain' 
+                      ? 'bg-amber-500/10 dark:bg-amber-400/10 border border-amber-500/20 dark:border-amber-400/20' 
+                      : 'bg-purple-500/10 dark:bg-purple-300/10 border border-purple-500/20 dark:border-purple-300/20'
+                  }`}>
+                    {achievementIcons[item.id] || <Medal className="w-7 h-7 text-purple-600 dark:text-purple-300" />}
                   </div>
-                  <span className="text-xs font-mono font-medium px-2.5 py-0.5 rounded-lg bg-[var(--bg-subtle)] text-[var(--text-secondary)] border border-[var(--border-subtle)]">
+                  <span
+                    className={`text-xs font-semibold px-3 py-1 rounded-full border ${
+                      badgeColors[item.id] || 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border-slate-300 dark:border-slate-700'
+                    }`}
+                  >
                     {item.highlightBadge}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-display font-bold text-[var(--text-heading)] mb-1.5">
-                  {item.title}
+                <h3 className="text-lg sm:text-xl font-bold text-[var(--text-heading)] mb-1.5 flex items-center gap-2">
+                  <span>{item.title}</span>
+                  {item.id === 'archery-captain' && (
+                    <ArcheryTargetIcon className="w-4 h-4 text-amber-600 dark:text-amber-300/70 inline shrink-0" />
+                  )}
                 </h3>
 
                 {/* Organization & Period */}
                 <div className="flex flex-col gap-0.5 text-xs text-[var(--text-muted)] font-mono mb-4">
                   <span className="text-[var(--text-secondary)] font-medium">{item.organization}</span>
-                  <span className="flex items-center gap-1">
-                    <CalendarBlank className="w-3.5 h-3.5 text-[var(--accent)]" />
+                  <span className="text-[var(--text-muted)] flex items-center gap-1">
+                    <Calendar className="w-3 h-3 text-purple-600 dark:text-purple-300/80" />
                     {item.period}
                   </span>
                 </div>
 
                 {/* Description */}
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5 max-w-[55ch]">
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
                   {item.description}
                 </p>
 
                 {/* Bullets */}
                 {item.bullets && (
-                  <ul className="space-y-2 pt-2">
+                  <ul className="space-y-2.5 pt-4 border-t border-[var(--border-subtle)]">
                     {item.bullets.map((bullet, bIdx) => (
                       <li key={bIdx} className="flex items-start gap-2 text-xs text-[var(--text-secondary)]">
-                        <CheckCircle className="w-3.5 h-3.5 text-[var(--accent)] shrink-0 mt-0.5" />
-                        <span className="max-w-[50ch]">{bullet}</span>
+                        <CheckCircle className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300 shrink-0 mt-0.5" />
+                        <span>{bullet}</span>
                       </li>
                     ))}
                   </ul>
@@ -91,9 +110,9 @@ export const Achievements: React.FC = () => {
               </div>
 
               {/* Bottom Footer */}
-              <div className="mt-6 pt-4 flex items-center justify-between text-[11px] text-[var(--text-muted)] font-mono">
+              <div className="mt-6 pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between text-[11px] text-[var(--text-muted)] font-mono">
                 <span className="capitalize">{item.category}</span>
-                <span className="text-[var(--accent)] font-semibold">Verified</span>
+                <span className="text-purple-700 dark:text-purple-300 font-semibold">Verified</span>
               </div>
             </div>
           ))}

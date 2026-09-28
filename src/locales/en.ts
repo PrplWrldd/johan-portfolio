@@ -246,9 +246,6 @@ export const en: TranslationDictionary = {
     modalTech: 'Tech Stack',
     modalDeliverables: 'Deliverables',
     filterAll: 'All Projects',
-    emptyStateTitle: 'No projects in this category',
-    emptyStateSubtitle: 'There are no projects matching the selected filter right now.',
-    emptyStateReset: 'Show all projects',
     items: [
       {
         id: 'ianseo-pro',
@@ -279,8 +276,7 @@ export const en: TranslationDictionary = {
           'JSON / CSV Dataset Export Utility'
         ],
         imagePlaceholderText: 'Ianseo Pro — Live Tournament Scraper & Elimination Brackets',
-        accentColor: '#2563eb',
-        screenshotUrl: '/images/projects/ianseo-pro.jpg'
+        accentColor: '#F59E0B'
       },
       {
         id: 'maqam',
@@ -308,8 +304,7 @@ export const en: TranslationDictionary = {
           'Searchable Grave Database'
         ],
         imagePlaceholderText: 'MAQAM — Cemetery Management & GPS Plot Search',
-        accentColor: '#2563eb',
-        screenshotUrl: '/images/projects/maqam.jpg'
+        accentColor: '#059669'
       },
       {
         id: 'networth-3d',
@@ -337,8 +332,7 @@ export const en: TranslationDictionary = {
           'Google Identity Services OAuth Integration'
         ],
         imagePlaceholderText: 'Three.js 3D Visualizer — Sphere & Helix Particle Layouts',
-        accentColor: '#2563eb',
-        screenshotUrl: '/images/projects/networth-3d.jpg'
+        accentColor: '#6366F1'
       },
       {
         id: 'hansard-parliament',
@@ -366,8 +360,7 @@ export const en: TranslationDictionary = {
           'System Operational Manuals'
         ],
         imagePlaceholderText: 'Hansard Parliament — Malaysian Parliamentary Digital Archive',
-        accentColor: '#2563eb',
-        screenshotUrl: '/images/projects/hansard-parliament.jpg'
+        accentColor: '#8B5CF6'
       },
       {
         id: 'portal-sekolahku',
@@ -395,8 +388,7 @@ export const en: TranslationDictionary = {
           'National Database Integration Specifications'
         ],
         imagePlaceholderText: 'Portal Sekolahku — National Public Schools Web Ecosystem',
-        accentColor: '#2563eb',
-        screenshotUrl: '/images/projects/portal-sekolahku.jpg'
+        accentColor: '#0EA5E9'
       },
       {
         id: 'myds-system',
@@ -424,8 +416,7 @@ export const en: TranslationDictionary = {
           'Developer Adoption & Hand-off Guides'
         ],
         imagePlaceholderText: 'MYDS — Government Design System & Reusable UI Components',
-        accentColor: '#2563eb',
-        screenshotUrl: '/images/projects/myds-system.jpg'
+        accentColor: '#EC4899'
       }
     ]
   },

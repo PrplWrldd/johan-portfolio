@@ -3,15 +3,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useLanguage } from '../context/LanguageContext';
-import { 
-  EnvelopeSimple, 
-  Check, 
-  ArrowSquareOut, 
-  FileText, 
-  ArrowDown,
-  GraduationCap,
-  CaretRight
-} from '@phosphor-icons/react';
+import { Award, Mail, Check, ExternalLink, ArrowDown, ChevronRight, FileCheck2, GraduationCap } from 'lucide-react';
+import { ArcheryBowIcon, ArcheryTargetIcon } from './Icons';
 
 export const Hero: React.FC = () => {
   const { t } = useLanguage();
@@ -20,179 +13,208 @@ export const Hero: React.FC = () => {
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('johanirfan123@gmail.com');
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setTimeout(() => setCopied(false), 2500);
   };
 
   return (
     <section
       id="hero"
       aria-label="Hero Introduction"
-      className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-[var(--bg-main)] transition-colors duration-200"
+      className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 bg-mesh-subtle overflow-hidden transition-colors duration-300"
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-          
-          {/* Left Column: Left-Aligned Editorial Hierarchy (7 cols) */}
-          <div className="lg:col-span-8 text-left space-y-6">
-            
-            {/* Status & Availability Tags */}
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/25">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                <span>Available Immediately</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono text-[var(--text-secondary)] bg-[var(--bg-subtle)] border border-[var(--border-subtle)]">
-                <GraduationCap className="w-3.5 h-3.5 text-[var(--accent)]" />
-                <span>IIUM · Info Security (CGPA 3.57)</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono text-[var(--text-secondary)] bg-[var(--bg-subtle)] border border-[var(--border-subtle)]">
-                <span>Ex-GovTech Malaysia</span>
-              </span>
-            </div>
+      {/* Hero Background Portrait Image Layer */}
+      <div
+        className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none"
+        aria-hidden="true"
+      >
+        <div className="relative w-full h-full">
+          <Image
+            src="/images/johan-hero.jpg"
+            alt="Muhammad Johan Irfan - SAAC Archery Championship & GovTech"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[center_40%] opacity-55 dark:opacity-50 filter saturate-95 contrast-110 transition-opacity duration-300"
+          />
+          {/* Edge and Radial Vignette Overlays for seamless blending */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/40 to-[var(--bg-main)]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg-main)] via-transparent to-[var(--bg-main)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,var(--bg-main)_90%)]" />
+        </div>
+      </div>
 
-            {/* Main Name & Title */}
-            <div>
-              <p className="text-xs uppercase tracking-widest text-[var(--accent)] font-mono font-semibold mb-2">
-                {t.hero.greeting}
-              </p>
-              <h1
-                id="hero-candidate-name"
-                className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-[var(--text-heading)] leading-[1.08]"
-              >
-                {t.hero.name}
-              </h1>
-              <h2
-                id="hero-candidate-headline"
-                className="text-xl sm:text-2xl font-display font-medium text-[var(--text-secondary)] mt-3"
-              >
-                {t.hero.headline}
-              </h2>
-            </div>
+      {/* Decorative subtle ambient glows */}
+      <div
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-purple-400/15 dark:bg-purple-300/10 rounded-full blur-3xl pointer-events-none z-0"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-10 right-10 w-[300px] h-[250px] bg-violet-400/15 dark:bg-violet-300/10 rounded-full blur-3xl pointer-events-none z-0"
+        aria-hidden="true"
+      />
 
-            {/* Hook / Intro description - Strictly under 70 characters per line */}
-            <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-[62ch]">
-              Bachelor of Information Technology graduate from IIUM specialising in Information Assurance & Security. Former Requirements Engineer / BA Intern at GovTech Malaysia (Kementerian Digital), engineering BRS, SRS, SDS specifications, and modern full-stack systems.
-            </p>
+      {/* Subtle Archery Concentric Watermark (Ultra-fine geometric motif) */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] pointer-events-none opacity-[var(--watermark-opacity)] z-0 select-none transition-opacity duration-300"
+        aria-hidden="true"
+      >
+        <svg viewBox="0 0 400 400" className="w-full h-full text-purple-600 dark:text-purple-300 stroke-current fill-none">
+          <circle cx="200" cy="200" r="190" strokeWidth="0.75" strokeDasharray="4 4" />
+          <circle cx="200" cy="200" r="140" strokeWidth="0.75" />
+          <circle cx="200" cy="200" r="90" strokeWidth="0.75" strokeDasharray="3 3" />
+          <circle cx="200" cy="200" r="40" strokeWidth="0.75" />
+          <circle cx="200" cy="200" r="8" strokeWidth="0.75" />
+          {/* Subtle crosshair guide axes */}
+          <line x1="200" y1="5" x2="200" y2="395" strokeWidth="0.5" strokeDasharray="2 4" />
+          <line x1="5" y1="200" x2="395" y2="200" strokeWidth="0.5" strokeDasharray="2 4" />
+        </svg>
+      </div>
 
-            {/* Call to Actions */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <a
-                href="#experience"
-                id="hero-cta-experience"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white transition-colors"
-              >
-                <FileText className="w-4 h-4" />
-                <span>{t.hero.ctaExperience}</span>
-                <CaretRight className="w-3.5 h-3.5" />
-              </a>
-
-              <a
-                href="#projects"
-                id="hero-cta-projects"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium bg-[var(--bg-card)] hover:bg-[var(--bg-subtle)] text-[var(--text-primary)] border border-[var(--border-card)] hover:border-[var(--border-hover)] transition-colors"
-              >
-                <span>{t.hero.ctaProjects}</span>
-              </a>
-
-              <button
-                type="button"
-                id="hero-cta-copy-email"
-                onClick={handleCopyEmail}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium bg-[var(--bg-card)] hover:bg-[var(--bg-subtle)] text-[var(--text-primary)] border border-[var(--border-card)] hover:border-[var(--border-hover)] transition-colors cursor-pointer"
-                title="Copy email: johanirfan123@gmail.com"
-              >
-                {copied ? (
-                  <>
-                    <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                    <span className="font-semibold text-emerald-700 dark:text-emerald-400">{t.hero.copiedEmail}</span>
-                  </>
-                ) : (
-                  <>
-                    <EnvelopeSimple className="w-4 h-4 text-[var(--accent)]" />
-                    <span className="font-mono text-xs">johanirfan123@gmail.com</span>
-                  </>
-                )}
-              </button>
-
-              <a
-                href="https://www.linkedin.com/in/muhammad-johan-irfan-khairudin-a234a6200"
-                target="_blank"
-                rel="noopener noreferrer"
-                id="hero-cta-linkedin"
-                className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-lg text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-heading)] transition-colors"
-                aria-label="LinkedIn profile"
-              >
-                <span>LinkedIn</span>
-                <ArrowSquareOut className="w-3.5 h-3.5" />
-              </a>
-            </div>
-
-            {/* Quick Metrics Matrix - Left-aligned cards with single radius and no shadows */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6">
-              <div className="card-clean p-3.5">
-                <div className="text-[11px] text-[var(--text-muted)] uppercase font-mono tracking-wider">Experience</div>
-                <div className="text-sm font-bold text-[var(--text-heading)] mt-0.5">GovTech Malaysia</div>
-                <div className="text-xs text-[var(--text-secondary)]">Kem. Digital</div>
-              </div>
-
-              <div className="card-clean p-3.5">
-                <div className="text-[11px] text-[var(--text-muted)] uppercase font-mono tracking-wider">Academic</div>
-                <div className="text-sm font-bold text-[var(--text-heading)] mt-0.5">CGPA 3.57</div>
-                <div className="text-xs text-[var(--text-secondary)]">5x Dean&apos;s List</div>
-              </div>
-
-              <div className="card-clean p-3.5">
-                <div className="text-[11px] text-[var(--text-muted)] uppercase font-mono tracking-wider">Discipline</div>
-                <div className="text-sm font-bold text-[var(--text-heading)] mt-0.5">Info Assurance</div>
-                <div className="text-xs text-[var(--text-secondary)]">Specs & Systems</div>
-              </div>
-
-              <div className="card-clean p-3.5">
-                <div className="text-[11px] text-[var(--text-muted)] uppercase font-mono tracking-wider">Leadership</div>
-                <div className="text-sm font-bold text-[var(--text-heading)] mt-0.5">Archery Captain</div>
-                <div className="text-xs text-[var(--text-secondary)]">IIUM Mustang</div>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Right Column: Authentic Professional Portrait (4 cols) */}
-          <div className="lg:col-span-4 flex flex-col items-start lg:items-end">
-            <div className="relative w-full max-w-sm rounded-lg overflow-hidden border border-[var(--border-card)] bg-[var(--bg-surface)]">
-              <div className="relative aspect-[4/5] w-full">
-                <Image
-                  src="/images/johan-hero.jpg"
-                  alt="Muhammad Johan Irfan - Professional Portrait"
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 380px"
-                  className="object-cover object-[center_35%]"
-                />
-              </div>
-              <div className="p-3 bg-[var(--bg-card)] border-t border-[var(--border-subtle)] text-left">
-                <div className="text-xs font-semibold text-[var(--text-heading)]">
-                  Muhammad Johan Irfan
-                </div>
-                <div className="text-[11px] text-[var(--text-muted)] font-mono">
-                  Requirements Engineer · Full-Stack Dev
-                </div>
-              </div>
-            </div>
-          </div>
-
+      <div className="relative z-10 max-w-4xl mx-auto w-full text-center flex flex-col items-center">
+        {/* Verification Status Badges */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+          <span
+            id="hero-badge-iium"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100/90 dark:bg-slate-900/90 text-slate-700 dark:text-slate-300 border border-purple-200 dark:border-slate-700/80 shadow-sm backdrop-blur-xs"
+          >
+            <GraduationCap className="w-3.5 h-3.5 text-purple-600 dark:text-purple-300" />
+            {t.hero.badgeEducation}
+          </span>
+          <span
+            id="hero-badge-cgpa"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-violet-100/90 dark:bg-violet-950/80 text-violet-800 dark:text-violet-200 border border-violet-300/40 dark:border-violet-300/30 shadow-sm backdrop-blur-xs"
+          >
+            <Award className="w-3.5 h-3.5 text-violet-600 dark:text-violet-300" />
+            {t.hero.badgeCgpa}
+          </span>
+          <span
+            id="hero-badge-availability"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-50/90 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-200 border border-emerald-300/40 dark:border-emerald-400/30 shadow-sm backdrop-blur-xs"
+          >
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Available Immediately</span>
+          </span>
+          {/* Subtle Archery Leadership Badge */}
+          <span
+            id="hero-badge-archery"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-amber-50/90 dark:bg-slate-900/90 text-amber-800 dark:text-amber-200 border border-amber-300/50 dark:border-amber-500/30 shadow-sm backdrop-blur-xs"
+          >
+            <ArcheryBowIcon className="w-3.5 h-3.5 text-amber-600 dark:text-amber-300" />
+            <span>Archery Captain</span>
+          </span>
         </div>
 
-        {/* Explore link */}
-        <div className="mt-16 text-left">
+        {/* Greeting and Full Name */}
+        <p className="text-xs uppercase tracking-widest text-purple-700 dark:text-purple-300 font-mono mb-2 font-semibold flex items-center justify-center gap-1.5">
+          <ArcheryTargetIcon className="w-3 h-3 text-purple-600 dark:text-purple-300/70 inline" />
+          <span>{t.hero.greeting}</span>
+        </p>
+        <h1
+          id="hero-candidate-name"
+          className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--text-heading)] mb-4 leading-tight drop-shadow-sm"
+        >
+          {t.hero.name}
+        </h1>
+
+        {/* Role & Specialization Headline */}
+        <p
+          id="hero-candidate-headline"
+          className="text-base sm:text-xl font-semibold text-[var(--text-secondary)] max-w-2xl mx-auto mb-8 leading-snug"
+        >
+          {t.hero.headline}
+        </p>
+
+        {/* Primary Call-to-Actions */}
+        <div className="flex flex-wrap items-center justify-center gap-3.5 mb-10">
           <a
-            href="#about"
-            className="inline-flex items-center gap-2 text-xs font-mono text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors focus:outline-none"
-            aria-label="Scroll down to About section"
+            href="#experience"
+            id="hero-cta-experience"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-purple-600 hover:bg-purple-700 text-white dark:bg-purple-300 dark:hover:bg-purple-200 dark:text-purple-950 shadow-lg shadow-purple-950/20 dark:shadow-purple-950/40 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
-            <span>{'// SCROLL TO EXPLORE PROFILE'}</span>
-            <ArrowDown className="w-3.5 h-3.5 text-[var(--accent)]" />
+            <FileCheck2 className="w-4 h-4" />
+            <span>{t.hero.ctaExperience}</span>
+            <ChevronRight className="w-4 h-4" />
+          </a>
+
+          <a
+            href="#projects"
+            id="hero-cta-projects"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-white/95 hover:bg-purple-50/80 text-slate-800 border border-purple-200 dark:bg-slate-900/90 dark:hover:bg-slate-800 dark:text-slate-200 dark:border-slate-700 hover:border-purple-400 dark:hover:border-purple-300/40 shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <span>{t.hero.ctaProjects}</span>
+          </a>
+
+          {/* Direct Email Copy / Compose CTA */}
+          <button
+            type="button"
+            id="hero-cta-copy-email"
+            onClick={handleCopyEmail}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium bg-white/95 hover:bg-purple-50/80 text-slate-700 border border-purple-200 dark:bg-slate-900/80 dark:hover:bg-slate-800 dark:text-slate-300 dark:border-slate-700/80 hover:border-purple-400 dark:hover:border-purple-300/40 shadow-sm transition-all cursor-pointer"
+            title="Copy email: johanirfan123@gmail.com"
+          >
+            {copied ? (
+              <>
+                <Check className="w-4 h-4 text-purple-600 dark:text-purple-300" />
+                <span className="text-purple-700 dark:text-purple-200 font-semibold">{t.hero.copiedEmail}</span>
+              </>
+            ) : (
+              <>
+                <Mail className="w-4 h-4 text-purple-600 dark:text-purple-300" />
+                <span>johanirfan123@gmail.com</span>
+              </>
+            )}
+          </button>
+
+          {/* LinkedIn Profile */}
+          <a
+            href="https://www.linkedin.com/in/muhammad-johan-irfan-khairudin-a234a6200"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="hero-cta-linkedin"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium bg-white/95 hover:bg-purple-50/80 text-slate-700 border border-purple-200 dark:bg-slate-900/80 dark:hover:bg-slate-800 dark:text-slate-300 dark:border-slate-700/80 hover:border-purple-400 dark:hover:border-purple-300/40 shadow-sm transition-all"
+            aria-label="Visit Muhammad Johan Irfan LinkedIn profile"
+          >
+            <span>LinkedIn</span>
+            <ExternalLink className="w-4 h-4 text-purple-600 dark:text-purple-300" />
           </a>
         </div>
+
+        {/* Quick Highlights Strip */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl w-full text-left">
+          <div className="card-govtech p-3.5 rounded-xl backdrop-blur-xs">
+            <div className="text-[11px] text-[var(--text-muted)] uppercase font-mono tracking-wider">Experience</div>
+            <div className="text-sm font-bold text-[var(--text-heading)] mt-0.5">GovTech Malaysia</div>
+            <div className="text-xs text-purple-700 dark:text-purple-300 font-medium">Completed · Kem. Digital</div>
+          </div>
+          <div className="card-govtech p-3.5 rounded-xl backdrop-blur-xs">
+            <div className="text-[11px] text-[var(--text-muted)] uppercase font-mono tracking-wider">Academic</div>
+            <div className="text-sm font-bold text-[var(--text-heading)] mt-0.5">CGPA 3.57</div>
+            <div className="text-xs text-violet-700 dark:text-violet-300 font-medium">5x Dean&apos;s List</div>
+          </div>
+          <div className="card-govtech p-3.5 rounded-xl backdrop-blur-xs">
+            <div className="text-[11px] text-[var(--text-muted)] uppercase font-mono tracking-wider">Focus</div>
+            <div className="text-sm font-bold text-[var(--text-heading)] mt-0.5">Info Security</div>
+            <div className="text-xs text-purple-700 dark:text-purple-200 font-medium">Requirements & Dev</div>
+          </div>
+          <div className="card-govtech p-3.5 rounded-xl backdrop-blur-xs">
+            <div className="text-[11px] text-[var(--text-muted)] uppercase font-mono tracking-wider flex items-center justify-between">
+              <span>Leadership</span>
+              <ArcheryBowIcon className="w-3 h-3 text-amber-600 dark:text-amber-300/80" />
+            </div>
+            <div className="text-sm font-bold text-[var(--text-heading)] mt-0.5">Archery Captain</div>
+            <div className="text-xs text-amber-700 dark:text-amber-300 font-medium">IIUM Mustang</div>
+          </div>
+        </div>
+
+        {/* Scroll down indicator */}
+        <a
+          href="#about"
+          className="mt-12 text-[var(--text-muted)] hover:text-purple-600 dark:hover:text-purple-300 transition-colors flex flex-col items-center gap-1 focus:outline-none"
+          aria-label="Scroll down to About section"
+        >
+          <span className="text-[11px] font-mono tracking-wider uppercase">Explore</span>
+          <ArrowDown className="w-4 h-4 animate-bounce text-purple-600 dark:text-purple-300" />
+        </a>
       </div>
     </section>
   );
