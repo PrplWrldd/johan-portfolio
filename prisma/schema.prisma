@@ -1,0 +1,98 @@
+// Prisma Schema for Johan Irfan's Portfolio
+// Configured for Supabase PostgreSQL (Connection Pooling + Direct URL)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// -------------------------------------------------------------
+// 1. Projects & Showcase
+// -------------------------------------------------------------
+model Project {
+  id                      String   @id @default(cuid())
+  slug                    String   @unique
+  title                   String
+  subtitle                String
+  category                String   // e.g. "GovTech", "Full Stack", "Mobile"
+  summary                 String   @db.Text
+  detailedOverview        String   @db.Text
+  problemStatement        String   @db.Text
+  solutionAndArchitecture String   @db.Text
+  keyFeatures             String[] // PostgreSQL native string array
+  techStack               String[]
+  deliverables            String[]
+  role                    String
+  githubUrl               String?
+  liveDemoUrl             String?
+  imagePlaceholderText    String   @default("Project Preview")
+  accentColor             String   @default("purple")
+  featured                Boolean  @default(false)
+  displayOrder            Int      @default(0)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+
+  stats                   ProjectStat?
+}
+
+// -------------------------------------------------------------
+// 2. Project Analytics & Engagement
+// -------------------------------------------------------------
+model ProjectStat {
+  id          String   @id @default(cuid())
+  projectSlug String   @unique
+  project     Project  @relation(fields: [projectSlug], references: [slug], onDelete: Cascade)
+  views       Int      @default(0)
+  likes       Int      @default(0)
+  updatedAt   DateTime @updatedAt
+}
+
+// -------------------------------------------------------------
+// 3. Contact Submissions & Recruiter Inquiries
+// -------------------------------------------------------------
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String   @db.Text
+  isRead    Boolean  @default(false)
+  isReplied Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+// -------------------------------------------------------------
+// 4. Work Experience & Career Milestones
+// -------------------------------------------------------------
+model Experience {
+  id             String   @id @default(cuid())
+  organization   String
+  ministry       String
+  role           String
+  period         String
+  location       String
+  type           String   // e.g. "Full-time", "Internship"
+  summary        String   @db.Text
+  skillsAcquired String[]
+  displayOrder   Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// -------------------------------------------------------------
+// 5. Visitor Endorsements / Testimonials (Optional)
+// -------------------------------------------------------------
+model Endorsement {
+  id           String   @id @default(cuid())
+  authorName   String
+  authorTitle  String
+  organization String
+  comment      String   @db.Text
+  isApproved   Boolean  @default(false)
+  createdAt    DateTime @default(now())
+}

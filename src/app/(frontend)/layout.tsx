@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '../globals.css';
 import { Analytics } from '@vercel/analytics/next';
-import { LanguageProvider } from '../context/LanguageContext';
-import { ThemeProvider } from '../context/ThemeContext';
+import { LanguageProvider } from '@/context/LanguageContext';
+import { ThemeProvider } from '@/context/ThemeContext';
 
 export const metadata: Metadata = {
   title: 'Muhammad Johan Irfan | Requirements Engineer & Full-Stack Developer',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     'Information Assurance and Security',
     'Laravel Developer',
     'Full Stack Developer Malaysia',
-    'Available Immediately'
+    'Available Immediately',
   ],
   authors: [{ name: 'Muhammad Johan Irfan bin Khairudin' }],
   creator: 'Muhammad Johan Irfan',
