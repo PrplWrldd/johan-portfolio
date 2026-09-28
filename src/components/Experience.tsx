@@ -10,6 +10,9 @@ import {
   Sparkles
 } from 'lucide-react';
 
+import type { Experience as PayloadExperience } from '@/types/payload-types';
+import type { ExperienceItem } from '@/types/portfolio';
+
 export interface ProjectDeliverable {
   name: string;
   tag?: string;
@@ -30,14 +33,28 @@ export interface NormalizedExperienceItem {
   skillsAcquired?: string[];
 }
 
-function normalizeExperience(item: any): NormalizedExperienceItem {
-  const skills: string[] = (item.skillsAcquired || [])
-    .map((s: any) => (typeof s === 'string' ? s : s?.skill || ''))
+export type ExperienceInput =
+  | PayloadExperience
+  | ExperienceItem
+  | (Omit<Partial<PayloadExperience>, 'projects' | 'skillsAcquired'> & {
+      projects?: (string | { name?: string | null; tag?: string | null; description?: string | null; deliverables?: (string | { item: string })[] | null })[] | null;
+      skillsAcquired?: (string | { skill: string; id?: string | null })[] | null;
+    });
+
+function normalizeExperience(item: ExperienceInput): NormalizedExperienceItem {
+  const rawSkills = item.skillsAcquired || [];
+  const skills: string[] = rawSkills
+    .map((s) => (typeof s === 'string' ? s : s?.skill || ''))
     .filter(Boolean);
 
-  const projects: ProjectDeliverable[] = (item.projects || []).map((p: any) => {
-    const deliverables: string[] = (p.deliverables || [])
-      .map((d: any) => (typeof d === 'string' ? d : d?.item || ''))
+  const rawProjects = item.projects || [];
+  const projects: ProjectDeliverable[] = rawProjects.map((p) => {
+    if (typeof p === 'string') {
+      return { name: p, deliverables: [] };
+    }
+    const rawDeliverables = p.deliverables || [];
+    const deliverables: string[] = rawDeliverables
+      .map((d) => (typeof d === 'string' ? d : d?.item || ''))
       .filter(Boolean);
 
     return {
@@ -49,7 +66,7 @@ function normalizeExperience(item: any): NormalizedExperienceItem {
   });
 
   return {
-    id: item.id || item.organization,
+    id: item.id ?? item.organization ?? 'exp',
     organization: item.organization || '',
     ministry: item.ministry || '',
     role: item.role || '',
@@ -236,7 +253,7 @@ const ExperienceCard: React.FC<{
   );
 };
 
-export const Experience: React.FC<{ initialExperiences?: any[] }> = ({ initialExperiences }) => {
+export const Experience: React.FC<{ initialExperiences?: ExperienceInput[] }> = ({ initialExperiences }) => {
   const { t } = useLanguage();
 
   // If initialExperiences provided and non-empty, use them; otherwise fallback to locale

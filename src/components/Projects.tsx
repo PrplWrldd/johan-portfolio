@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { ProjectItem } from '../types/portfolio';
 import { ProjectModal } from './ProjectModal';
 import { 
   FolderGit2, 
@@ -18,28 +17,55 @@ import {
 } from 'lucide-react';
 import { GithubIcon } from './Icons';
 
-function normalizeProject(p: any): ProjectItem {
+import type { Project as PayloadProject } from '@/types/payload-types';
+import type { ProjectItem } from '@/types/portfolio';
+
+export type ProjectInput =
+  | PayloadProject
+  | ProjectItem
+  | (Omit<Partial<PayloadProject>, 'keyFeatures' | 'techStack' | 'deliverables'> & {
+      keyFeatures?: (string | { feature: string })[] | null;
+      techStack?: (string | { tech: string })[] | null;
+      deliverables?: (string | { item: string })[] | null;
+    });
+
+function normalizeProject(p: ProjectInput): ProjectItem {
+  const rawFeatures = p.keyFeatures || [];
+  const keyFeatures = rawFeatures
+    .map((f) => (typeof f === 'string' ? f : f?.feature || ''))
+    .filter(Boolean);
+
+  const rawTech = p.techStack || [];
+  const techStack = rawTech
+    .map((t) => (typeof t === 'string' ? t : t?.tech || ''))
+    .filter(Boolean);
+
+  const rawDeliverables = p.deliverables || [];
+  const deliverables = rawDeliverables
+    .map((d) => (typeof d === 'string' ? d : d?.item || ''))
+    .filter(Boolean);
+
   return {
-    id: p.slug || String(p.id) || '',
+    id: ('slug' in p && p.slug) ? p.slug : String(p.id || ''),
     title: p.title || '',
     subtitle: p.subtitle || p.category || '',
     category: p.category || 'GovTech',
     summary: p.summary || '',
-    detailedOverview: p.detailedOverview || p.description || p.summary || '',
+    detailedOverview: p.detailedOverview || p.summary || '',
     problemStatement: p.problemStatement || '',
     solutionAndArchitecture: p.solutionAndArchitecture || '',
-    keyFeatures: (p.keyFeatures || []).map((f: any) => (typeof f === 'string' ? f : f?.feature || '')).filter(Boolean),
-    techStack: (p.techStack || []).map((t: any) => (typeof t === 'string' ? t : t?.tech || '')).filter(Boolean),
+    keyFeatures,
+    techStack,
     role: p.role || 'Developer',
-    githubUrl: p.githubUrl || undefined,
-    liveDemoUrl: p.liveUrl || p.liveDemoUrl || undefined,
-    deliverables: (p.deliverables || []).map((d: any) => (typeof d === 'string' ? d : d?.item || '')).filter(Boolean),
+    githubUrl: (typeof p.githubUrl === 'string' && p.githubUrl) ? p.githubUrl : undefined,
+    liveDemoUrl: ('liveUrl' in p && typeof p.liveUrl === 'string' && p.liveUrl) ? p.liveUrl : ('liveDemoUrl' in p && typeof p.liveDemoUrl === 'string' ? p.liveDemoUrl : undefined),
+    deliverables,
     imagePlaceholderText: p.title || 'Project Preview',
-    accentColor: p.accentColor || 'purple',
+    accentColor: ('accentColor' in p && typeof p.accentColor === 'string' && p.accentColor) ? p.accentColor : 'purple',
   };
 }
 
-export const Projects: React.FC<{ initialProjects?: any[] }> = ({ initialProjects }) => {
+export const Projects: React.FC<{ initialProjects?: ProjectInput[] }> = ({ initialProjects }) => {
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>('all');

@@ -11,11 +11,13 @@ import { Achievements } from '@/components/Achievements';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 
+import type { Experience as PayloadExperience, Project as PayloadProject } from '@/types/payload-types';
+
 export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
-  let experiences: any[] = [];
-  let projects: any[] = [];
+  let experiences: PayloadExperience[] = [];
+  let projects: PayloadProject[] = [];
 
   try {
     const payload = await getPayload({ config: configPromise });
