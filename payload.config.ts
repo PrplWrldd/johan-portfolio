@@ -14,15 +14,21 @@ import { Media } from './src/collections/Media';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-function cleanEnv(val?: string) {
-  if (!val) return '';
-  return val.trim().replace(/^["']|["']$/g, '');
+function sanitizeUrl(raw?: string): string {
+  if (!raw) return '';
+  let url = raw.trim();
+  url = url.replace(/^["'`]|["'`]$/g, '').trim();
+  if (url.startsWith('DATABASE_URI=') || url.startsWith('DATABASE_URL=') || url.startsWith('DIRECT_URL=')) {
+    url = url.substring(url.indexOf('=') + 1).trim();
+  }
+  url = url.replace(/^["'`]|["'`]$/g, '').trim();
+  return url;
 }
 
 const dbConnectionString =
-  cleanEnv(process.env.DATABASE_URI) ||
-  cleanEnv(process.env.DIRECT_URL) ||
-  cleanEnv(process.env.DATABASE_URL);
+  sanitizeUrl(process.env.DATABASE_URI) ||
+  sanitizeUrl(process.env.DIRECT_URL) ||
+  sanitizeUrl(process.env.DATABASE_URL);
 
 export default buildConfig({
   admin: {
@@ -34,7 +40,7 @@ export default buildConfig({
   collections: [Users, Projects, Experiences, Media],
   editor: lexicalEditor(),
   sharp,
-  secret: cleanEnv(process.env.PAYLOAD_SECRET) || 'dev-payload-secret-key-at-least-32-chars-long-12345',
+  secret: sanitizeUrl(process.env.PAYLOAD_SECRET) || 'dev-payload-secret-key-at-least-32-chars-long-12345',
   typescript: {
     outputFile: path.resolve(dirname, 'src/types/payload-types.ts'),
   },
