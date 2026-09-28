@@ -4,6 +4,8 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import sharp from 'sharp';
+
 import { Users } from './src/collections/Users';
 import { Projects } from './src/collections/Projects';
 import { Experiences } from './src/collections/Experiences';
@@ -21,6 +23,7 @@ export default buildConfig({
   },
   collections: [Users, Projects, Experiences, Media],
   editor: lexicalEditor(),
+  sharp,
   secret: process.env.PAYLOAD_SECRET || 'dev-payload-secret-key-at-least-32-chars-long-12345',
   typescript: {
     outputFile: path.resolve(dirname, 'src/types/payload-types.ts'),
