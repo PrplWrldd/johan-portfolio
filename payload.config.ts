@@ -28,7 +28,9 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || process.env.DIRECT_URL || process.env.DATABASE_URL || '',
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : undefined,
     },
     schemaName: 'payload',
+    push: process.env.NODE_ENV !== 'production',
   }),
 });
