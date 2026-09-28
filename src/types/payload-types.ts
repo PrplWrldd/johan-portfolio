@@ -70,7 +70,6 @@ export interface Config {
     users: User;
     projects: Project;
     experiences: Experience;
-    media: Media;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -81,7 +80,6 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     experiences: ExperiencesSelect<false> | ExperiencesSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -235,25 +233,6 @@ export interface Experience {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -287,10 +266,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'experiences';
         value: number | Experience;
-      } | null)
-    | ({
-        relationTo: 'media';
-        value: number | Media;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -434,24 +409,6 @@ export interface ExperiencesSelect<T extends boolean = true> {
   displayOrder?: T;
   updatedAt?: T;
   createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
- */
-export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

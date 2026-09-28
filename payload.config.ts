@@ -9,7 +9,6 @@ import sharp from 'sharp';
 import { Users } from './src/collections/Users';
 import { Projects } from './src/collections/Projects';
 import { Experiences } from './src/collections/Experiences';
-import { Media } from './src/collections/Media';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -37,7 +36,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Projects, Experiences, Media],
+  collections: [Users, Projects, Experiences],
   editor: lexicalEditor(),
   sharp,
   secret: sanitizeUrl(process.env.PAYLOAD_SECRET) || 'dev-payload-secret-key-at-least-32-chars-long-12345',
@@ -53,6 +52,6 @@ export default buildConfig({
       ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : undefined,
     },
     schemaName: 'payload',
-    push: process.env.NODE_ENV !== 'production',
+    push: false,
   }),
 });
