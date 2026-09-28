@@ -47,6 +47,37 @@ export const Experiences: CollectionConfig = {
       required: true,
     },
     {
+      name: 'projects',
+      type: 'array',
+      label: 'Deliverables & Systems',
+      fields: [
+        {
+          name: 'name',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'tag',
+          type: 'text',
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+        },
+        {
+          name: 'deliverables',
+          type: 'array',
+          fields: [
+            {
+              name: 'item',
+              type: 'text',
+              required: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: 'skillsAcquired',
       type: 'array',
       fields: [

@@ -18,7 +18,28 @@ import {
 } from 'lucide-react';
 import { GithubIcon } from './Icons';
 
-export const Projects: React.FC = () => {
+function normalizeProject(p: any): ProjectItem {
+  return {
+    id: p.slug || String(p.id) || '',
+    title: p.title || '',
+    subtitle: p.subtitle || p.category || '',
+    category: p.category || 'GovTech',
+    summary: p.summary || '',
+    detailedOverview: p.detailedOverview || p.description || p.summary || '',
+    problemStatement: p.problemStatement || '',
+    solutionAndArchitecture: p.solutionAndArchitecture || '',
+    keyFeatures: (p.keyFeatures || []).map((f: any) => (typeof f === 'string' ? f : f?.feature || '')).filter(Boolean),
+    techStack: (p.techStack || []).map((t: any) => (typeof t === 'string' ? t : t?.tech || '')).filter(Boolean),
+    role: p.role || 'Developer',
+    githubUrl: p.githubUrl || undefined,
+    liveDemoUrl: p.liveUrl || p.liveDemoUrl || undefined,
+    deliverables: (p.deliverables || []).map((d: any) => (typeof d === 'string' ? d : d?.item || '')).filter(Boolean),
+    imagePlaceholderText: p.title || 'Project Preview',
+    accentColor: p.accentColor || 'purple',
+  };
+}
+
+export const Projects: React.FC<{ initialProjects?: any[] }> = ({ initialProjects }) => {
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>('all');
@@ -32,14 +53,19 @@ export const Projects: React.FC = () => {
     'myds-system': <Palette className="w-6 h-6 text-pink-600 dark:text-pink-300" />,
   };
 
+  const allProjects: ProjectItem[] = (initialProjects && initialProjects.length > 0)
+    ? initialProjects.map(normalizeProject)
+    : t.projects.items;
+
   const filteredProjects = activeFilter === 'all'
-    ? t.projects.items
-    : t.projects.items.filter(p => {
-        const cat = p.category.toLowerCase();
+    ? allProjects
+    : allProjects.filter(p => {
+        const cat = (p.category || '').toLowerCase();
+        const id = (p.id || '').toLowerCase();
         if (activeFilter === 'full-stack') return cat.includes('full-stack');
         if (activeFilter === '3d') return cat.includes('3d');
-        if (activeFilter === 'public') return cat.includes('public') || p.id.includes('hansard') || p.id.includes('sekolahku');
-        if (activeFilter === 'design') return cat.includes('design') || p.id.includes('myds');
+        if (activeFilter === 'public') return cat.includes('public') || id.includes('hansard') || id.includes('sekolahku');
+        if (activeFilter === 'design') return cat.includes('design') || id.includes('myds');
         return cat.includes(activeFilter.toLowerCase());
       });
 

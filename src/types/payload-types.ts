@@ -209,6 +209,20 @@ export interface Experience {
   location: string;
   type: string;
   summary: string;
+  projects?:
+    | {
+        name: string;
+        tag?: string | null;
+        description?: string | null;
+        deliverables?:
+          | {
+              item: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   skillsAcquired?:
     | {
         skill: string;
@@ -397,6 +411,20 @@ export interface ExperiencesSelect<T extends boolean = true> {
   location?: T;
   type?: T;
   summary?: T;
+  projects?:
+    | T
+    | {
+        name?: T;
+        tag?: T;
+        description?: T;
+        deliverables?:
+          | T
+          | {
+              item?: T;
+              id?: T;
+            };
+        id?: T;
+      };
   skillsAcquired?:
     | T
     | {
