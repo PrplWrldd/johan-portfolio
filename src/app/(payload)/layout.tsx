@@ -1,4 +1,5 @@
 /* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
+import type { ServerFunctionClient } from 'payload';
 import configPromise from '@payload-config';
 import '@payloadcms/next/css';
 import { RootLayout, handleServerFunctions } from '@payloadcms/next/layouts';
@@ -10,7 +11,7 @@ type Args = {
   children: React.ReactNode;
 };
 
-const serverFunction = async (args: { name: string; args: Record<string, unknown> }) => {
+const serverFunction: ServerFunctionClient = async function (args) {
   'use server';
   return handleServerFunctions({
     ...args,
